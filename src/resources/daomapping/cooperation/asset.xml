@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.IAssetDao">
+    <!--<cache />-->
+    <select id="getAllAssetType" resultType="string">
+        SELECT assetname from assettype
+    </select>
+
+    <insert id="saveAsset" parameterType="com.rtworld.pojo.demand.Asset">
+        insert into asset values(id,#{projectName},#{assetType},#{evaluationMin},#{evaluationMax},#{priceMin},#{priceMax},#{city},#{range},#{mesageType},#{company},#{tip},#{createTime},#{createRtUser},#{fileView});
+    </insert>
+
+    <select id="queryAssetId" parameterType="string" resultType="int">
+        select id from asset where time=#{string}
+    </select>
+
+    <insert id="saveLable" parameterType="com.rtworld.pojo.demand.CoopToLable">
+        insert into asset_lable values(#{cid},#{lid})
+    </insert>
+
+    <insert id="saveImage" parameterType="com.rtworld.pojo.demand.Image">
+        insert into asset_image values(#{cid},#{src})
+    </insert>
+
+    <insert id="saveFile" parameterType="com.rtworld.pojo.demand.File">
+        insert into asset_file values(#{cid},#{src})
+    </insert>
+
+    <select id="findAsset" parameterType="com.rtworld.pojo.demand.Asset" resultMap="assetMap">
+        select * from asset
+        <where>
+            1=1
+            <if test="assetType != null and assetType != ''">
+                and asset_type=#{assetType}
+            </if>
+            <if test="city != null and city != ''">
+                and city=#{city}
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and cname like '%'||#{projectName}||'%'
+            </if>
+            <if test="createTime!= null">
+                order by time desc
+            </if>
+        </where>
+    </select>
+    <resultMap id="assetMap" type="com.rtworld.pojo.demand.Asset">
+        <id column="id" property="id"></id>
+        <result column="name" property="projectName"></result>
+        <result column="asset_type" property="assetType"></result>
+        <result column="asset_min" property="evaluationMin"></result>
+        <result column="asset_max" property="evaluationMax"></result>
+        <result column="money_min" property="priceMin"></result>
+        <result column="money_max" property="priceMax"></result>
+        <result column="city" property="city"></result>
+        <result column="range" property="range"></result>
+        <result column="message_type" property="mesageType"></result>
+        <result column="company" property="company"></result>
+        <result column="tip" property="tip"></result>
+        <result column="time" property="createTime"></result>
+        <result column="rtusername" property="createRtUser"></result>
+        <result column="fileview" property="fileView"></result>
+    </resultMap>
+
+    <select id="getAssetById" parameterType="int" resultMap="assetMap">
+        select * from asset where id=#{id}
+    </select>
+    <!--<select id="getUserByName" parameterType="string" resultMap="userMap">
+        select * from rtuser where rtusername=#{string}
+    </select>
+    <resultMap id="userMap" type="com.rtworld.pojo.user.RtUser">
+        <id column="id" property="id"></id>
+        <result column="rtusername" property="rtUserName"></result>
+        <result column="companyname" property="companyName"></result>
+        <result column="rtfaceimg" property="rtfaceimg"></result>
+    </resultMap>-->
+
+    <select id="getAssetLableById" parameterType="int" resultType="string">
+        select lable from asset a,lable b,asset_lable c where a.id=c.aid and b.id=c.lid and a.id=#{id}
+    </select>
+</mapper>

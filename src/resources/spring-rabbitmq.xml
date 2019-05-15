@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:rabbit="http://www.springframework.org/schema/rabbit"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/rabbit http://www.springframework.org/schema/rabbit/spring-rabbit.xsd">
+
+    <rabbit:connection-factory id="connectionFactory" virtual-host="/my_vhost"
+                               username="rabbitmq" password="rabbitmq" host="192.168.187.17" port="5672"/>
+
+    <rabbit:admin id="connectAdmin" connection-factory="connectionFactory" />
+
+    <!-- 定义exchange -->
+    <rabbit:topic-exchange name="myTopic"
+                           durable="false" auto-delete="false" declared-by="connectAdmin">
+        <!-- 如果要收消息，就要绑定队列；发是不要队列滴 -->
+        <rabbit:bindings>
+            <rabbit:binding pattern="com.oracle.#" queue="myTopicQueue"></rabbit:binding>
+        </rabbit:bindings>
+    </rabbit:topic-exchange>
+
+    <!--定义rabbit template用于数据的接收和发送 -->
+    <rabbit:template id="amqpTemplate" connection-factory="connectionFactory"
+                     exchange="myTopic" />
+
+    <!--queue创建队列-->
+    <rabbit:queue name="myTopicQueue" durable="false" exclusive="false"
+                  auto-delete="true"></rabbit:queue>
+
+ <!--   &lt;!&ndash; 接收消息要有个监听，有消息了就会callback &ndash;&gt;
+    <rabbit:listener-container connection-factory="connectionFactory">
+        <rabbit:listener ref="rabbitListen" queues="myTopicQueue"></rabbit:listener>
+    </rabbit:listener-container>-->
+</beans>

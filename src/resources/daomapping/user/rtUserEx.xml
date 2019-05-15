@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.user.IRtUserExDao">
+    <select id="selectRtUserExById" parameterType="int" resultType="rtUserEx">
+        select userId,inviterId,mailState,mailCode,priMsgState,companyCertify,companyImg,balance,msgChecking
+        from rtuserex where userId = #{id}
+    </select>
+    <update id="msgChecked">
+        update rtuserex set msgChecking ="1"
+    </update>
+    <delete id="deleteOneById" parameterType="int">
+        delete rtuserex where id=#{id}
+    </delete>
+    <update id="updatepriMsgState" parameterType="rtUserEx">
+        update rtuserex set priMsgState = #{priMsgState} where userId = #{userId}
+    </update>
+    <update id="updateMailState" parameterType="rtUserEx">
+        update rtuserex set mailstate = #{mailState},mailcode = #{mailCode} where userId = #{userId}
+    </update>
+    <insert id="addEx" parameterType="int">
+        insert into rtuserex(userid) values(#{userid});
+    </insert>
+    <update id="updateExMsg" parameterType="rtUserEx">
+        update rtuserex set priMsgState = #{priMsgState} where id=#{userId}
+    </update>
+
+</mapper>

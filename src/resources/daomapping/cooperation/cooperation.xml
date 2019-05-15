@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.ICooperationDao">
+    <!--<cache />-->
+
+    <select id="queryCooperationId" resultType="int" parameterType="string">
+        select id from coop where time=#{string}
+    </select>
+
+    <insert id="saveCooperation"  parameterType="com.rtworld.pojo.demand.Cooperation">
+        insert into coop values (id,#{projectName},#{cooperationType},#{city},#{industryType},#{mesageType},#{company},#{tip},#{createTime},#{createRtUser},#{fileView})
+    </insert>
+
+    <insert id="saveResourceType" parameterType="com.rtworld.pojo.demand.CoopToCoopType">
+        insert into coop_cooptype values (#{cid},#{ctid})
+    </insert>
+
+    <insert id="saveLable" parameterType="com.rtworld.pojo.demand.CoopToLable">
+        insert into coop_lable values(#{cid},#{lid})
+    </insert>
+
+    <insert id="saveImage" parameterType="com.rtworld.pojo.demand.Image">
+        insert into image values(#{cid},#{src})
+    </insert>
+
+    <insert id="saveFile" parameterType="com.rtworld.pojo.demand.File">
+        insert into file values(#{cid},#{src})
+    </insert>
+
+    <!--<select id="getResourceTypes" resultType="string">
+        select typename from cooptype
+    </select>-->
+
+    <select id="getAllCity" resultType="string">
+        select city_name from city
+    </select>
+
+    <select id="getAllCoopTypes" resultMap="coopTypeMap">
+        select * from cooptype
+    </select>
+    <resultMap id="coopTypeMap" type="com.rtworld.pojo.demand.CoopType">
+        <id column="id" property="id"></id>
+        <result column="typename" property="typeName"></result>
+    </resultMap>
+
+
+    <select id="getAllIndustry" resultMap="IndustryeMap">
+        select * from industry
+    </select>
+    <resultMap id="IndustryeMap" type="com.rtworld.pojo.demand.Industry">
+        <id column="id" property="id"></id>
+        <result column="iname" property="iname"></result>
+    </resultMap>
+
+    <select id="getAllLable" resultMap="lableMap">
+        select * from lable
+    </select>
+    <resultMap id="lableMap" type="com.rtworld.pojo.demand.Lable">
+        <id column="id" property="id"></id>
+        <result column="lable" property="lable"></result>
+    </resultMap>
+
+    <select id="findCooperation" parameterType="com.rtworld.pojo.demand.Cooperation" resultMap="findCoopMap">
+        select * from coop
+        <where>
+            1=1
+            <if test="cooperationType != null and cooperationType != ''">
+                and ctype=#{cooperationType}
+            </if>
+            <if test="city != null and city != ''">
+                and city=#{city}
+            </if>
+            <if test="industryType != null and industryType != ''">
+                and industry=#{industryType}
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and cname like '%'||#{projectName}||'%'
+            </if>
+            <if test="createTime!= null">
+                order by time desc
+            </if>
+        </where>
+    </select>
+    <resultMap id="findCoopMap" type="com.rtworld.pojo.demand.Cooperation">
+        <id column="id" property="id"></id>
+        <result column="cname" property="projectName"></result>
+        <result column="ctype" property="cooperationType"></result>
+        <result column="city" property="city"></result>
+        <result column="industry" property="industryType"></result>
+        <result column="mtype" property="mesageType"></result>
+        <result column="company" property="company"></result>
+        <result column="tip" property="tip"></result>
+        <result column="time" property="createTime"></result>
+        <result column="rtusername" property="createRtUser"></result>
+        <result column="fileview" property="fileView"></result>
+    </resultMap>
+
+    <select id="getCooperation" parameterType="int" resultMap="findCoopMap">
+        select * from coop where id=#{id}
+    </select>
+
+    <select id="getResourceTypeById" resultType="string" parameterType="int">
+        select typename from coop a,cooptype b,coop_cooptype c where a.id=c.cid and b.id=c.ctid and a.id=#{id}
+    </select>
+
+    <select id="getLableById" parameterType="int" resultType="string">
+        select lable from coop a,lable b,coop_lable c where a.id=c.cid and b.id=c.lid and a.id=#{id}
+    </select>
+
+    <select id="getUserByName" parameterType="string" resultMap="userMap">
+        select * from rtuser where rtusername=#{string}
+    </select>
+    <resultMap id="userMap" type="com.rtworld.pojo.user.RtUser">
+        <id column="id" property="id"></id>
+        <result column="rtusername" property="rtUserName"></result>
+        <result column="companyname" property="companyName"></result>
+        <result column="rtfaceimg" property="rtfaceimg"></result>
+    </resultMap>
+</mapper>

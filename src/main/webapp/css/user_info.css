@@ -1,0 +1,492 @@
+html,body{
+    background-color: #1b1b1b;
+    font-size: 14px;
+    color: #ffffff;
+    padding:0px;
+    margin: 0px;
+}
+ul,ul>li{
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+.rltv{
+    position: relative;
+}
+.top{
+    background: #1b1b1b;
+    position:relative;
+    width: 80%;
+    height: 100px;
+    top:0px;
+    left:10%;
+    z-index:99999;
+}
+.top_left{
+    width: 40%;
+    line-height: 100px;
+    margin: auto;
+    display: inline-block;
+    padding-top: 20px;
+    margin-right: -1px;
+    margin-left: -1px;
+}
+.top_right{
+    position: absolute;
+    width: 55%;
+    float: right;
+    height: 80px;
+    line-height: 80px;
+    right:5%;
+    top:20px;
+    margin-right: -1px;
+    margin-left: -1px;
+
+}
+.adtop{
+
+}
+.adtop>img{
+    margin-top: 100px;
+    width: 100%;
+}
+.fr{
+    float: right;
+}
+.fl{
+    float: left;
+}
+#top_right_li>li{
+    float: left;
+    width: 14%;
+    text-align: center;
+    position: relative;
+    padding-right: 1px;
+    padding-left: 1px;
+
+}
+#top_right_li a{
+    color: white;
+    text-decoration: none;
+}
+#top_right_li a:hover{
+    color: yellow;
+}
+.fabu .fabu_menu{
+ display: none;
+}
+.chazhao .chazhao_menu{
+    display: none;
+}
+.fabu_menu>li,.chazhao_menu>li{
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    background-color: #1b1b1b;
+    border-bottom: 1px solid #666666;
+}
+.fabu_menu a,.chazhao_menu a{
+    color: white;
+    text-decoration: none;
+
+}
+.fabu_menu a:hover,.chazhao_menu a:hover{
+    color: #cc9966;
+}
+.fabu:hover .fabu_menu{
+    display: block;
+}
+.chazhao:hover .chazhao_menu{
+    display: block;
+}
+
+/*账户&信息*/
+#zhxx{
+    width: 100%;
+    text-align: center;
+}
+.zhgl_bg{
+    background: url("/images/zhuzi/grzx.png");
+}
+.zhgl_bg_click{
+    background: url("/images/zhuzi/grzx_1.png");
+
+}
+.zhgl{
+    /*border: 1px solid red !important;*/
+    float: left;
+    width: 50%;
+    font-size: 16px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+}
+.xxgl_bg{
+    background: url("/images/zhuzi/xxzx.png");
+}
+.xxgl_bg_click{
+    background: url("/images/zhuzi/xxzx_1.png");
+}
+.xxgl{
+    float: left;
+    width: 50%;
+    font-size: 16px;
+    height: 55px;
+    line-height: 55px;
+    text-align: center;
+    /*border: 1px solid red !important;*/
+
+}
+#zhxx_menus{
+    height: 140px;
+    background-color: #666666;
+    min-width: 1366px;
+    /*border: 1px solid red !important;*/
+
+}
+.color1{
+    margin: auto;
+    width:62%;
+    height:85px;
+    overflow: hidden;
+}
+.MY_Window{
+    width:201%;
+    height:85px;
+}
+/*账户管理*/
+.zhgl_menu{
+    margin: auto;
+    width: 49%;
+    height: 100%;
+    padding-top: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    /*border: 1px solid red !important;*/
+
+}
+.xxgl_menu{
+    folat:left;
+    width: 49%;
+    height: 100%;
+    padding-top: 5px;
+    display: inline-block;
+    vertical-align: middle;
+    /*border: 1px solid red !important;*/
+
+}
+.zhxx_menus>div{
+    margin-top: 5px;
+    height: 120px;
+}
+.menu_3{
+    float: left;
+    height: 55px;
+    margin-top: 10px;
+    width: 33%;
+    font-size: 16px;
+    line-height: 55px;
+    text-align: center;
+    cursor: pointer;
+    background-size: 100px 100%;
+}
+.menu_4{
+    float: left;
+    height: 55px;
+    width: 25%;
+    font-size: 16px;
+    line-height: 55px;
+    text-align: center;
+    cursor: pointer;
+    background-size: 100px 100%;
+}
+.div1{
+    width: 100%;
+    height: 150px;
+}
+/*七大模块*/
+#main{
+    min-width:1366px;
+}
+/*基本信息*/
+#jbxx_son{
+    padding-top: 45px;
+    /*display: none;*/
+
+}
+.container_box{
+    margin: auto;
+    width: 1300px;
+    margin-top: 20px;
+}
+.container_box1{
+    width: 830px;
+    background-color: #333333;
+    margin-top: 20px;
+    padding: 40px 30px 45px;
+}
+.uer_info_title{
+    font-size: 25px;
+    text-align: center;
+}
+.line_style{
+    margin: 15px auto 40px;
+    height: 2px;
+    background-color: #cc9966;
+    width: 50px;
+}
+.user_info_box{
+    margin: 20px auto;
+    width: 70%;
+    padding-bottom: 45px;
+    font-size: 16px;
+}
+.col-xs-3{
+    width: 25%;
+}
+.col-xs-9{
+    width: 75%;
+}
+.col-xs-4{
+    width: 33.3%;
+}
+.tx2_img{
+    width: 145px;
+    height: 145px;
+    border-radius: 50%;
+    display: block;
+    max-width: 100%;
+    margin-right: 5%;
+}
+.top_25{
+    margin-top: 25px;
+    height: 18px;
+    line-height: 18px;
+}
+.myInfo_box{
+    float: left;
+    padding-top: 24px;
+    width: 165px;
+    height: 175px;
+    border: 1px solid #cc9966;
+    border-radius: 10px;
+    cursor: pointer;
+}
+.myInfo_box_img{
+    margin: 0 auto;
+    width: 50px;
+    height: 62px;
+}
+.myInfo_box_font{
+    margin-top: 10px;
+    color: #cc9966;
+    font-size: 18px;
+}
+.foot_title{
+    width: 110px;
+    height: 35px;
+    text-align: center;
+    line-height: 35px;
+    background-color: #cc9966;
+    font-size: 18px;
+    margin-left: 15px;
+}
+.recommend_pro{
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 350px;
+    height: 700px;
+    border: 1px solid #cc9966;
+    overflow: hidden;
+}
+.recommend_title{
+    width: 100%;
+    height: 60px;
+    background-color: #cc9966;
+    text-align: center;
+    font-size: 24px;
+    line-height: 60px;
+}
+/*身份验证*/
+#sfyz_son{
+    margin: 20px auto 50px;
+    width: 1300px;
+    padding: 1px 95px 50px;
+    background-color: #333;
+    display: none;
+}
+
+.f_list{
+    width: 940px;
+    height: 100px;
+    border-bottom: 1px solid #666;
+    margin: 45px auto 0px;
+
+}
+.f_img{
+    float: left;
+    width: 70px;
+    margin-left: 40px;
+}
+.f_text_box{
+    float: left;
+    margin-left: 20px;
+}
+.f_line{
+    width: 40px;
+    height: 2px;
+    background-color: #cc9966;
+    margin: 7px 0;
+}
+.f_btn{
+    width: 110px;
+    height: 36px;
+    border: none;
+    border-radius: 5px;
+    background: none;
+    background-color: #cc9966;
+    font-size: 16px;
+    float: right;
+    margin: 18px 24px 0 0;
+}
+/*邀请注册*/
+#yqzc_son{
+    display: none;
+}
+.yqzc_son_box{
+    margin: 20px auto;
+    width: 1300px;
+    padding: 30px 150px 60px;
+    background-color: #333;
+}
+.user_info_title{
+    font-size: 25px;
+    text-align: center;
+}
+.copy_input{
+    width: 800px;
+    height: 40px;
+    background: none;
+    border: 1px solid #999;
+    margin-right: 23px;
+    border-radius: 3px;
+    padding: 0 10px;
+    color: white;
+}
+/*我的信息*/
+#wdxx_son{
+    margin: 45px auto;
+    width: 1300px;
+    height: 900px;
+    background-color:#666666;
+    display: none;
+}
+.top_title{
+    width: 100%;
+    height: 75px;
+    border-bottom: 1px solid #666;
+}
+.top_title_son{
+    margin: 0 auto;
+    width: 60%;
+    height: 75px;
+    line-height: 75px;
+    text-align: center;
+    font-size: 18px;
+}
+
+.row{
+    margin-left: -1px;
+    margin-right: -1px;
+}
+.row div{
+    display: inline-block;
+    width:200px;
+    height:60px;
+    margin-left: 50px;
+}
+.getmsg{
+    color: #cc9966;
+    cursor: pointer;
+}
+.send{
+    cursor: pointer;
+}
+.sys_message{
+    cursor: pointer;
+}
+.chat_list_box{
+    margin: 10px auto 0;
+    width: 930px;
+    height: 735px;
+    overflow: auto;
+}
+.pro_list_box{
+    padding: 20px;
+}
+.no_sc{
+    padding: 60px;
+    width: 100%;
+    height: 200px;
+    text-align: center;
+    color: #cc9966;
+    font-size: 35px;
+}
+#wdxm_son{
+    display: none;
+}
+#wdsc_son{
+    display: none;
+}
+.footpri_box{
+    width:200px;
+    height:290px;
+    border:1px rgb(204,153,102) solid;
+    text-align: center;
+    margin-left: 15px;
+    display: inline-block;
+}
+.footpri_box p{
+    line-height: 20px;
+}
+.MY_lxt{
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    width: 80px;
+    height: 20px;
+    background-color: #cc9966;
+    color:white;
+}
+.wdyq_son_top_choose{
+    display: inline-block;
+    vertical-align: middle;
+    text-align: center;
+    color:white;
+    font-size: 20px;
+    border-right:3px white solid;
+    width:32%;
+    height:40px;
+    line-height: 40px;
+    cursor: pointer;
+}
+.wdyq_son_top_choose:last-child{
+    border-right:0px white solid;
+}
+.mail_body{
+    both:clear;
+}
+.mail_message{
+    width:60%;
+    height:100px;
+    margin:10px auto;
+    border:1px solid black;
+    border-radius: 10px;
+    box-shadow: #1b1b1b 1px 1px 10px -5px;
+}
+.mail_message span{
+    font-size: 20px;
+    margin-left: 40px;
+    font-weight: bold;
+}

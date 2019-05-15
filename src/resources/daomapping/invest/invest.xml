@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.invest.IIvestDao">
+      <!--parameter累类型,设置keyProperty可以获取刚插入的id-->
+     <insert id="saveInvest"  keyProperty="id" useGeneratedKeys="true"
+             parameterType="com.rtworld.pojo.quanInvest.invest">
+        insert into invest values
+       (id,#{pmessagetype},#{city},#{username},#{pname},#{pmoney},
+       #{pstage},#{pstarttime},#{pendtime},#{ptimestate},#{pincome},
+       #{ppstate},#{ptype},#{pcompname},#{pspot},#{createTime},#{fileView}
+       )
+     </insert>
+     <insert id="saveCity"  parameterType="com.rtworld.pojo.quanInvest.investVsCity">
+           insert into  invest_city values
+           (#{pid},#{pcid})
+     </insert>
+
+     <insert id="saveIndustry" parameterType="com.rtworld.pojo.quanInvest.investVsIndustry">
+          insert into invest_industry values
+          (#{pid},#{inid})
+     </insert>
+    <select id="selectAllPeriod" parameterType="com.rtworld.pojo.quanInvest.period"
+            resultMap="periodMap">
+             select * from period
+    </select>
+    <resultMap id="periodMap" type="com.rtworld.pojo.quanInvest.period">
+        <id column="id" property="perid"></id>
+        <result column="periodname" property="periodname"></result>
+    </resultMap>
+
+    <!--标签-->
+    <select id="selectAllLable" resultMap="newlableMap">
+        select * from lable
+    </select>
+    <resultMap id="newlableMap" type="com.rtworld.pojo.demand.Lable">
+         <id column="id" property="id"></id>
+         <result column="lable" property="lable"></result>
+    </resultMap>
+    <!--城市-->
+    <select id="selectAllCity" resultMap="cityMap">
+        select * from Cities
+    </select>
+    <resultMap id="cityMap" type="com.rtworld.pojo.quanInvest.City">
+         <id column="cityId" property="id"></id>
+         <result column="cityname" property="cityname"></result>
+    </resultMap>
+    <!--行业-->
+    <select id="selectAllindustry" resultType="string">
+        select iname from industry
+    </select>
+
+  <select id="findInvest" parameterType="com.rtworld.pojo.quanInvest.invest"
+    resultMap="investMap">
+            select * from invest
+            <where>
+                1=1
+                <if test="pmessagetype != null and pmessagetype != ''">
+                    and pmessagetype=#{pmessagetype}
+                </if>
+                <if test="pstage != null and pstage != ''">
+                    and pstage =#{pstage}
+                </if>
+                <if test="city != null and city != ''">
+                    and city=#{city}
+                </if>
+                <if test="pname != null and pname != ''">
+                    and pname like  "%"#{pname}"%"
+                </if>
+                <if test="createTime!= null">
+                    order by createtime desc
+
+                </if>
+            </where>
+
+    </select>
+    <resultMap id="investMap" type="com.rtworld.pojo.quanInvest.invest">
+        <id column="id" property="id"></id>
+        <result column="pname" property="pname"></result>
+        <result column="pmessagetype" property="pmessagetype"></result>
+        <result column="username" property="username"></result>
+        <result column="pmoney" property="pmoney"></result>
+        <result column="pstage" property="pstage"></result>
+        <result column="pstarttime" property="pstarttime"></result>
+        <result column="pendtime" property="pendtime"></result>
+        <result column="ptimestate" property="ptimestate"></result>
+        <result column="pincome" property="pincome"></result>
+        <result column="ppstate" property="ppstate"></result>
+        <result column="ptype" property="ptype"></result>
+        <result column="pcompname" property="pcompname"></result>
+        <result column="pspot" property="pspot"></result>
+        <result column="createtime" property="createTime"></result>
+        <result column="valid" property="fileView"></result>
+    </resultMap>
+    <select id="getIndustryById" parameterType="int" resultType="string">
+        select iname from invest a,industry b,invest_industry c where a.id=c.pid and b.id=c.inid and a.id=#{id}
+    </select>
+    <select id="getInvestById" parameterType="int" resultMap="investMap" >
+         select * from invest where id=#{id}
+    </select>
+
+</mapper>

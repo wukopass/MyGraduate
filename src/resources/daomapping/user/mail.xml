@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+        <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.user.IMailDao">
+        <select id="selectMailsBySenderId" resultType="mail" parameterType="int">
+                select id,title,context,isRead,senderId,reciverId,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective from mail where senderId = #{id} and isEffective = 0
+        order by createTime desc
+        </select>
+
+        <select id="selectMailsByReciverId" resultType="mail" parameterType="int">
+                select id,title,context,isRead,senderId,reciverId,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective from mail where reciverId = #{id} and senderId != 0 and isEffective = 0
+        order by createTime desc
+        </select>
+
+        <select id="selectNotReadMails" resultType="mail" parameterType="int">
+              select id,title,context,isRead,senderId,reciverId,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective from mail where reciverId = #{id} and senderId != 0 and isEffective = 0
+        and isRead = 0 order by createTime desc
+        </select>
+
+        <select id="selectCountNotMails" resultType="int" parameterType="int">
+                select count(1) from mail where reciverId = #{id} and senderId != 0 and isEffective = 0
+        and isRead = 0
+        </select>
+
+        <select id="selectMySysMails" parameterType="int" resultType="mail">
+                select id,title,context,isRead,senderId,reciverId,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective from mail where reciverId = #{id} and senderId = 0 and isEffective = 0
+        order by createTime desc
+        </select>
+
+        <select id="selectMySysCount" parameterType="int" resultType="int">
+                select count(1) from mail where reciverId = #{id} and senderId = 0 and isEffective = 0
+        </select>
+
+        <select id="selectMailById" resultType="mail" parameterType="int">
+                select id,title,context,isRead,senderId,reciverId,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective from mail where id = #{id} and isEffective = 0
+        </select>
+
+        <insert id="insertMail" parameterType="mail">
+                insert into mail(title,context,isRead,senderId,reciverId,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective) values(#{title},#{context},#{isRead},#{senderId},#{reciverId},
+        #{createTime},#{updateTime},#{createRtUser},#{updateRtUser},#{isEffective});
+        </insert>
+
+        <update id="deleteMailById" parameterType="int" >
+                update mail set isEffective = 1 where id = #{id}
+        </update>
+
+        <update id="readMail" parameterType="int">
+                update mail set isRead = 1 where id = #{id}
+        </update>
+</mapper>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.IStockDao">
+    <!--<cache />-->
+    <insert id="saveStock" parameterType="com.rtworld.pojo.demand.Stock">
+        insert into stock values(id,#{projectName},#{industryType},#{nature},#{listedCompany},#{evaluationMin},#{evaluationMax},#{price},#{stockNum},#{stockProportion},#{mesageType},#{company},#{companyTip},#{statusTip},#{createTime},#{createRtUser},#{fileView});
+    </insert>
+
+    <insert id="saveLable" parameterType="com.rtworld.pojo.demand.CoopToLable">
+        insert into stock_lable values(#{cid},#{lid})
+    </insert>
+
+    <insert id="saveImage" parameterType="com.rtworld.pojo.demand.Image">
+        insert into stock_image values(#{cid},#{src})
+    </insert>
+
+    <insert id="saveFile" parameterType="com.rtworld.pojo.demand.File">
+        insert into stock_file values(#{cid},#{src})
+    </insert>
+
+    <select id="queryStockId" parameterType="string" resultType="int">
+        select id from stock where time=#{string}
+    </select>
+
+    <select id="findStock" parameterType="com.rtworld.pojo.demand.Stock" resultMap="stockMap">
+        select * from stock
+        <where>
+            1=1
+            <if test="nature != null and nature != ''">
+                and nature=#{nature}
+            </if>
+
+            <if test="industryType != null and industryType != ''">
+                and industry=#{industryType}
+            </if>
+            <if test="projectName != null and projectName != ''">
+                and cname like '%'||#{projectName}||'%'
+            </if>
+            <if test="createTime!= null">
+                order by time desc
+            </if>
+        </where>
+    </select>
+    <resultMap id="stockMap" type="com.rtworld.pojo.demand.Stock">
+        <id column="id" property="id"></id>
+        <result column="name" property="projectName"></result>
+        <result column="industry" property="industryType"></result>
+        <result column="nature" property="nature"></result>
+        <result column="listed_company" property="listedCompany"></result>
+        <result column="valuation_min" property="evaluationMin"></result>
+        <result column="valuation_max" property="evaluationMax"></result>
+        <result column="price" property="price"></result>
+        <result column="number" property="stockNum"></result>
+        <result column="proportion" property="stockProportion"></result>
+        <result column="message_type" property="mesageType"></result>
+        <result column="company" property="company"></result>
+        <result column="introduction" property="companyTip"></result>
+        <result column="status" property="statusTip"></result>
+        <result column="time" property="createTime"></result>
+        <result column="rtusername" property="createRtUser"></result>
+        <result column="fileview" property="fileView"></result>
+
+    </resultMap>
+
+    <select id="getStockById" resultMap="stockMap" parameterType="int">
+        select * from stock where id=#{id}
+    </select>
+
+    <select id="getStockLableById" parameterType="int" resultType="string">
+        select lable from stock a,lable b,stock_lable c where a.id=c.sid and b.id=c.lid and a.id=#{id}
+    </select>
+</mapper>

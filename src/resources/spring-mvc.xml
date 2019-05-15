@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+    <!-- 开启注解 -->
+    <mvc:annotation-driven conversion-service="converters"/>
+
+    <!-- 开启扫描 -->
+    <context:component-scan use-default-filters="false" base-package="com.rtworld.handle">
+        <!-- 只扫描base-package指定下的有@Controller下的java类 -->
+        <context:include-filter type="annotation"
+                                expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+    <!-- 放行静态资源 -->
+    <mvc:default-servlet-handler/>
+    <!-- 转发视图页面添加前后缀 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- action中return的页面的前缀 -->
+        <property name="prefix" value="/jsp/" />
+        <!-- action中return的页面的后缀 -->
+        <property name="suffix" value=".jsp" />
+    </bean>
+    <!-- 上传文件解释器 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 设置默认编码 -->
+        <property name="defaultEncoding" value="utf-8"></property>
+        <!-- 上传文件最大大小5M-->
+        <property name="maxUploadSize" value="5242440"></property>
+    </bean>
+
+    <!-- 配置全局日期转换器 -->
+    <bean id="converters" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <list>
+                <bean class="com.rtworld.util.CustomDateEdtor"></bean>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 启动AOP AspectJ注解自动代理 -->
+    <aop:aspectj-autoproxy proxy-target-class="true"/>
+    <!-- 指定自定义注解类的路径 及 配置在Controller上添加自定义注解来接收数据 -->
+    <context:component-scan base-package="com.rtworld.aspect">
+        <context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" />
+    </context:component-scan>
+
+
+</beans>

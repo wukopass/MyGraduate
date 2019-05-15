@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="logImpl" value="LOG4J"/>
+        <!-- 启用延迟加载 -->
+        <setting name="lazyLoadingEnabled" value="true"/>
+        <!-- 最新版本默认为false，老版本为true,代表使用本对象也会去加载关联对象.设置为false,那只有调用关联对象的时候,才去查询-->
+        <setting name="aggressiveLazyLoading" value="false"/>
+    </settings>
+
+    <typeAliases>
+        <typeAlias type="com.rtworld.pojo.util.HistoryJob" alias="historyJob"/>
+        <typeAlias type="com.rtworld.pojo.user.RealMsg" alias="realMsg"/>
+        <typeAlias type="com.rtworld.pojo.user.Mail" alias="mail"/>
+        <typeAlias type="com.rtworld.pojo.user.RtUser" alias="rtUser"/>
+        <typeAlias type="com.rtworld.pojo.user.RtUserEx" alias="rtUserEx"/>
+        <typeAlias type="com.rtworld.pojo.util.CoopType" alias="coopType"/>
+        <typeAlias type="com.rtworld.pojo.util.InvestType" alias="investType"/>
+        <typeAlias type="com.rtworld.pojo.user.RtRole" alias="rtRole"/>
+        <typeAlias type="com.rtworld.pojo.util.Industry" alias="industry"/>
+        <typeAlias type="com.rtworld.pojo.util.UserAndType" alias="userAndType"/>
+        <typeAlias type="com.rtworld.pojo.guidance.Tutor" alias="tutor"/>
+        <typeAlias type="com.rtworld.pojo.user.RtAuthority" alias="rtAuthority"/>
+        <typeAlias type="com.rtworld.pojo.guidance.SuccessCase" alias="successCase"/>
+        <typeAlias type="com.rtworld.pojo.guidance.GoodField" alias="goodField"/>
+        <typeAlias type="com.rtworld.pojo.guidance.ProjectStage" alias="projectStage"/>
+    </typeAliases>
+
+<!--    <environments default="oracledb">
+        <environment id="oracledb">
+            <transactionManager type="jdbc"></transactionManager>
+            <dataSource type="pooled">
+                <property name="driver" value="oracle.jdbc.driver.OracleDriver"/>
+                <property name="url" value="jdbc:oracle:thin:@localhost:1521:XE"/>
+                <property name="username" value="Tang"/>
+                <property name="password" value="Ling"/>
+            </dataSource>
+        </environment>
+    </environments>-->
+    <!--匹配mybatisxml文件-->
+<!--    <mappers>
+        <mapper resource="com/seecen/myssm/daomapping/Trainee.xml"></mapper>
+        <mapper resource="com/seecen/myssm/daomapping/Clazz.xml"></mapper>
+        <mapper resource="com/seecen/myssm/daomapping/Teacher.xml"></mapper>
+    </mappers>-->
+</configuration>

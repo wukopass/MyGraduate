@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.rtworld.dao.user.IRtUserDao">
+    <select id="selectRtUserById" parameterType="int" resultType="rtUser">
+        select id,rtUserName,rtPassword,tel,companyName,rtfaceimg,salt,mail,isLogin,inviteCode,createTime,
+    updateTime,createRtUser,updateRtUser,isEffective
+        from rtuser where id = #{id} and isEffective = 0
+    </select>
+
+    <select id="selectCount" parameterType="int" resultType="int">
+        select count(1) from rtuser
+    </select>
+
+    <select id="selectRtUserByRtUser" parameterType="rtUser" resultType="rtUser">
+        select id,rtUserName,rtPassword,tel,companyName,rtfaceimg,salt,mail,isLogin,inviteCode,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective
+        from rtuser
+        <where>
+            <if test="rtUserName != null and rtUserName != ''">
+               and rtUsername = #{rtUserName}
+            </if>
+            <if test="rtPassword != null and rtPassword != ''">
+               and rtPassword = #{rtPassword}
+            </if>
+            <if test="tel != null and tel != ''">
+               and tel like CONCAT('%',#{tel},'%')
+            </if>
+            <if test="companyName != null and companyName != ''">
+               and companyname like CONCAT('%',#{companyName},'%')
+            </if>
+            <if test="isEffective != null and isEffective != ''">
+               and isEffective = #{isEffective}
+            </if>
+        </where>
+    </select>
+    <select id="selectRtUsersByRtUser" parameterType="com.rtworld.util.Page" resultType="rtUser">
+        select id,rtUserName,rtPassword,tel,companyName,rtfaceimg,salt,mail,isLogin,inviteCode,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective
+        from rtuser
+        <where>
+
+            <if test="bean.rtUserName != null and bean.rtUserName != ''">
+                and rtUsername = #{bean.rtUserName}
+            </if>
+            <if test="bean.rtPassword != null and bean.rtPassword != ''">
+                and rtPassword = #{bean.rtPassword}
+            </if>
+            <if test="bean.tel != null and bean.tel != ''">
+                and tel like CONCAT('%',#{bean.tel},'%')
+            </if>
+            <if test="bean.companyName != null and bean.companyName != ''">
+                and companyname like CONCAT('%',#{bean.companyName},'%')
+            </if>
+            <if test="1==1">
+                and isEffective = "0"
+            </if>
+        </where>
+        limit #{start},#{pageSize}
+    </select>
+    <select id="selectCountByPage" parameterType="com.rtworld.util.Page" resultType="int">
+        select count(1) from rtuser
+        <where>
+            <if test="bean.rtUserName != null and bean.rtUserName != ''">
+                and rtUsername = #{bean.rtUserName}
+            </if>
+            <if test="bean.rtPassword != null and bean.rtPassword != ''">
+                and rtPassword = #{bean.rtPassword}
+            </if>
+            <if test="bean.tel != null and bean.tel != ''">
+                and tel like CONCAT('%',#{bean.tel},'%')
+            </if>
+            <if test="bean.companyName != null and bean.companyName != ''">
+                and companyname like CONCAT('%',#{bean.companyName},'%')
+            </if>
+            <if test="1==1">
+                and isEffective = "0"
+            </if>
+        </where>
+    </select>
+    <update id="setEffective" parameterType="rtUser">
+        update rtuser set iseffective = #{isEffective} where id=#{id}
+    </update>
+    <delete id="deleteOneById" parameterType="int">
+        delete rtuser where id=#{id}
+    </delete>
+    <select id="selectRtUserByTel" parameterType="string" resultType="rtUser">
+        select id,rtUserName,rtPassword,tel,companyName,rtfaceimg,salt,mail,isLogin,inviteCode,createTime,
+        updateTime,createRtUser,updateRtUser,isEffective
+        from rtuser where tel = #{string}
+    </select>
+    <insert id="addRtUser">
+        insert into rtuser(tel) values (#{tel})
+    </insert>
+    <insert id="addRole" parameterType="int">
+        insert into rtuserrole(userid,roleid) values (#{id},4);
+    </insert>
+    <update id="updatePasswordById" parameterType="rtUser">
+        update rtuser set rtpassword = #{rtPassword} where id = #{id}
+    </update>
+    <update id="updateRtUser" parameterType="rtUser">
+        update rtuser set rtusername=#{rtUserName},tel=#{tel},companyname=#{companyName} where id=#{id}
+    </update>
+    <update id="updateMC" parameterType="rtUser">
+        update rtuser set companyname=#{companyName},mail=#{mail} where id=#{id}
+    </update>
+    <update id="updateRole" parameterType="rtUser">
+        update rtuserrole set roleid=#{rtRole.id} where userid=#{id}
+    </update>
+    <update id="saveRtUser" parameterType="rtUser">
+        update rtuser set rtusername=#{rtUserName},companyname=#{companyName} where id=#{id}
+    </update>
+    <update id="changeUser" parameterType="rtUser">
+        update rtuserrole set roleid=3 where userid=#{id}
+    </update>
+    <update id="saveMail" parameterType="rtUser">
+        update rtuser set mail=#{mail} where id=#{id}
+    </update>
+    <update id="changeRole" parameterType="rtUser">
+        update rtuserrole  set roleid=#{rtRole.id} where userid=#{id}
+    </update>
+    <update id="changeCompanyName" parameterType="rtUser">
+        update rtuser set companyname=#{companyName} where id=#{id}
+    </update>
+</mapper>
