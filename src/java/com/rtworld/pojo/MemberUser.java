@@ -2,11 +2,12 @@ package com.rtworld.pojo;
 
 
 import java.io.Serializable;
+import java.lang.reflect.Member;
 import java.sql.Timestamp;
 
 public class MemberUser implements Serializable {
 
-  private int userid;
+  private Integer userid;
   private String username;
   private String password;
   private String tel;
@@ -15,19 +16,54 @@ public class MemberUser implements Serializable {
   private java.sql.Timestamp updatetime;
   private int iseffective;
   private Role role;
-  private int isLogin;
+  //判断是不是被锁
+  private Boolean locked = Boolean.FALSE;
   private String salt;
 
-  public int getIsLogin() {
-    return isLogin;
+  public Boolean getLocked() {
+    return locked;
   }
 
-  public void setIsLogin(int isLogin) {
-    this.isLogin = isLogin;
+  public void setLocked(Boolean locked) {
+    this.locked = locked;
+  }
+  public boolean equals(Object o) {
+    if (this == o)
+      return true;
+    if (o == null || getClass() != o.getClass())
+      return false;
+    MemberUser user = (MemberUser) o;
+    if (userid != null ? !userid.equals(userid) : user.userid != null)
+      return false;
+
+    return true;
   }
 
+  @Override
+  public int hashCode() {
+    return userid!= null ? userid.hashCode() : 0;
+  }
+
+  @Override
+  public String toString() {
+    return "MemberUser{" +
+            "userid=" + userid +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", tel='" + tel + '\'' +
+            ", mail='" + mail + '\'' +
+            ", createtime=" + createtime +
+            ", updatetime=" + updatetime +
+            ", iseffective=" + iseffective +
+            ", role=" + role +
+            ", locked=" + locked +
+            ", salt='" + salt + '\'' +
+            '}';
+  }
+
+  //加盐处理
   public String getSalt() {
-    return salt;
+    return  username + salt;
   }
 
   public void setSalt(String salt) {

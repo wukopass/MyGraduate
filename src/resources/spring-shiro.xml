@@ -16,7 +16,7 @@
         <!--加密方式-->
         <property name="hashAlgorithmName" value="md5"/>
         <!--加密次数-->
-        <property name="hashIterations" value="2"/>
+        <property name="hashIterations" value="3"/>
        <!-- 表示是否存储散列后的密码为16进制，需要和生成密码时的一样，默认是base64；-->
         <property name="storedCredentialsHexEncoded" value="true"/>
     </bean>

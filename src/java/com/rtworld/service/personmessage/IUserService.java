@@ -1,7 +1,6 @@
 package com.rtworld.service.personmessage;
 
 import com.rtworld.pojo.MemberUser;
-import java.util.List;
 
 public interface IUserService {
     MemberUser selectRtUserMessage(int id);

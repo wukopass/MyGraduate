@@ -7,16 +7,16 @@ import com.rtworld.util.Page;
 import java.util.List;
 
 public interface IUserDao {
-    //通过rtUser查找用户，
-    MemberUser selectRtUserByRtUser( MemberUser memberUser);
+
+    MemberUser selectRtUserByRtUser(MemberUser memberUser);
     //通过id查找用户
     MemberUser selectRtUserById(int id);
     //查看总数
     int selectCount();
 
-    MemberUser selectRtUser( MemberUser  memberUser);
+    MemberUser selectMemberUser( MemberUser  memberUser);
 
-    MemberUser selectRtUserByRtId( MemberUser memberUser);
+    MemberUser selectRtUserByRtId( int id);
     //找出符合条件的分页数据
     List< MemberUser> selectRtUsersByRtUser(Page<MemberUser> page);
     //符合条件信息数
@@ -49,5 +49,7 @@ public interface IUserDao {
 
     void changeRole(MemberUser memberUser);
 
+   //用户名查找用户
+    MemberUser findUserByUserName(String username);
 
 }

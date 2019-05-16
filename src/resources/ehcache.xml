@@ -15,7 +15,7 @@
     <cache name="passwordRetryCache"
            maxEntriesLocalHeap="2000"
            eternal="false"
-           timeToIdleSeconds="30" 
+           timeToIdleSeconds="60"
            timeToLiveSeconds="0"
            overflowToDisk="true"
            statistics="true">

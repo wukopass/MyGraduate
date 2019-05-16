@@ -38,13 +38,22 @@ public class UserRealm extends AuthorizingRealm {
 
 	// 登录校验
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
-		String tel = (String) token.getPrincipal();
-		MemberUser user = sysService.queryUserByTel(tel);
-		if(user.getIsLogin() == '1') throw new LockedAccountException();
-		return new SimpleAuthenticationInfo(user.getUserid(),
+		String username = (String) token.getPrincipal();
+		MemberUser user = sysService.queryUserByUserName(username);
+		if(user == null){
+			//账号找不到异常
+		  throw  new UnknownAccountException();
+		}
+		//判断账号是不是已经被锁定了
+		if (Boolean.TRUE.equals(user.getLocked())) {
+			// 抛出 帐号锁定异常
+			throw new LockedAccountException();
+		}
+		return new SimpleAuthenticationInfo(
+				user.getUsername(),
 				user.getPassword(),
-				ByteSource.Util.bytes(user.getSalt()), getName());
-		/*return null;*/
+				ByteSource.Util.bytes(user.getSalt())   // salt=username+salt
+				, getName());
 	}
 
 

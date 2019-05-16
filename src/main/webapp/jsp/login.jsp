@@ -14,10 +14,11 @@
 <div style="margin: auto">
     登入界面
     <form action="/sys/login.do">
-        用户名：<input type="text" name="rtUserName">
-        密码：<input type="password" name="rtPassword">
+        用户名：<input type="text" name="username">
+        密码：<input type="password" name="password">
         <input type="submit">
     </form>
+
 </div>
 
 

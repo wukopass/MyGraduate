@@ -22,6 +22,8 @@ public interface ISysService {
     MemberUser msgCheck( MemberUser rtUser);
 
     void deleteAllMsg( MemberUser rtUser);
+    //根据用户名找出用户
+    MemberUser queryUserByUserName(String username);
 
     MemberUser queryUserByTel(String tel);
 

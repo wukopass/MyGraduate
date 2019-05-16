@@ -19,69 +19,75 @@ import java.util.Set;
 @Service
 public class SysServiceImpl implements ISysService {
     @Autowired
-    private IUserDao rtUserDao;
+    private IUserDao userDao;
     @Autowired
-    private IRoleDao rtRoleDao;
+    private IRoleDao roleDao;
     @Autowired
     private IAuthority authorityDao;
 
 
 
     public void init(Page<MemberUser> page) {
-        page.setCounts(rtUserDao.selectCountByPage(page));
-        page.setBeans(rtUserDao.selectRtUsersByRtUser(page));
+        page.setCounts(userDao.selectCountByPage(page));
+        page.setBeans(userDao.selectRtUsersByRtUser(page));
         for (MemberUser user : page.getBeans()) {
-            user.setRole(rtRoleDao.getRole(user.getUserid()));
+            user.setRole(roleDao.getRole(user.getUserid()));
         }
     }
 
     @Override
     public List<Role> getRoles() {
-        return rtRoleDao.getRoles();
+        return roleDao.getRoles();
     }
 
    @Transactional
     public void toBeUnValid( MemberUser rtUser) {
-        rtUserDao.setEffective(rtUser);
+        userDao.setEffective(rtUser);
     }
 
     public  MemberUser getOneUser( MemberUser  memberUser) {
-        return rtUserDao.selectRtUserById( memberUser.getUserid());
+        return userDao.selectRtUserById( memberUser.getUserid());
     }
 
     @Override
     public void setRoleToRtUser(MemberUser rtUser) {
-        rtUser.setRole(rtRoleDao.getRole(rtUser.getUserid()));
+        rtUser.setRole(roleDao.getRole(rtUser.getUserid()));
     }
 
 
     public MemberUser msgCheck(MemberUser rtUser) {
-        rtUser = rtUserDao.selectRtUserById(rtUser.getUserid());
-        rtUserDao.changeRole(rtUser);
-       // rtUserDao.changeCompanyName(rtUser);
-        rtUser.setRole(rtRoleDao.getRole(rtUser.getUserid()));
+        rtUser = userDao.selectRtUserById(rtUser.getUserid());
+        userDao.changeRole(rtUser);
+       // userDao.changeCompanyName(rtUser);
+        rtUser.setRole(roleDao.getRole(rtUser.getUserid()));
         //rtUser.setRealMsg(realMsgDao.selectRealMsgById(rtUser.getId()));
         return rtUser;
     }
 
     @Override
     public void deleteAllMsg(MemberUser rtUser) {
-        rtRoleDao.deleteOneById(rtUser.getUserid());
-        rtUserDao.deleteOneById(rtUser.getUserid());
+        roleDao.deleteOneById(rtUser.getUserid());
+        userDao.deleteOneById(rtUser.getUserid());
     }
+    //根据用户名找用户
+    @Override
+    public MemberUser queryUserByUserName(String username) {
+        return userDao.findUserByUserName(username);
+    }
+
     public void updateEXMsg(MemberUser rtUser) {
         //更新修改 角色 邮箱 公司名称
-        rtUserDao.updateMC(rtUser);
-        rtUserDao.updateRole(rtUser);
+        userDao.updateMC(rtUser);
+        userDao.updateRole(rtUser);
     }
 
     public MemberUser queryUserByTel(String tel) {
-        MemberUser  rtUser = rtUserDao.selectRtUserByTel(tel);
+        MemberUser  rtUser = userDao.selectRtUserByTel(tel);
         if (rtUser == null){
-            rtUserDao.addMembetUser(tel);
-            rtUserDao.addRole(rtUser.getUserid());
+            userDao.addMembetUser(tel);
+            userDao.addRole(rtUser.getUserid());
         }else {
-            rtUser.setRole(rtRoleDao.getRole(rtUser.getUserid()));
+            rtUser.setRole(roleDao.getRole(rtUser.getUserid()));
         }
         conf.USERID = rtUser.getUserid();
         return rtUser;
@@ -89,7 +95,7 @@ public class SysServiceImpl implements ISysService {
 
     @Override
     public Set<String> findRolesByUserId(Integer id) {
-        Role rtRoles = rtRoleDao.getRole(id);
+        Role rtRoles = roleDao.getRole(id);
         Set<String> role = new HashSet<>();
         role.add(rtRoles.getRolename());
         return role;
@@ -108,13 +114,13 @@ public class SysServiceImpl implements ISysService {
 
     @Override
     public MemberUser getOneByTel(String tel) {
-        return rtUserDao.selectRtUserByTel(tel);
+        return userDao.selectRtUserByTel(tel);
     }
 
     @Override
     public void setMsgById(MemberUser rtUser) {
-        rtUserDao.saveRtUser(rtUser);
-        rtUserDao.changeUser(rtUser);
-        rtUser.setRole(rtRoleDao.getRole(rtUser.getUserid()));
+        userDao.saveRtUser(rtUser);
+        userDao.changeUser(rtUser);
+        rtUser.setRole(roleDao.getRole(rtUser.getUserid()));
     }
 }
