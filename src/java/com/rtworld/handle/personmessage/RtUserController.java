@@ -2,9 +2,8 @@ package com.rtworld.handle.personmessage;
 
 import com.rtworld.dao.user.IMailDao;
 import com.rtworld.pojo.Base;
-import com.rtworld.pojo.user.Mail;
-import com.rtworld.pojo.user.RealMsg;
-import com.rtworld.pojo.user.RtUser;
+import com.rtworld.pojo.Mail;
+import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.personmessage.IMailService;
 import com.rtworld.service.personmessage.IUserService;
 import com.rtworld.util.conf;
@@ -33,23 +32,15 @@ public class RtUserController {
     @Autowired
     private IMailService mailService;
 
-    @Autowired
-    private RedisTemplate redisTemplate;
-
     @RequestMapping("myMessage.do")
     public ModelAndView rtUserMessage(){
         ModelAndView mv = new ModelAndView("personMessage/user_info");
-        RtUser rt = null;
-        rt = (RtUser)redisTemplate.opsForHash().get("User","rtUserAll");
-        System.out.println(redisTemplate.getExpire("User",TimeUnit.SECONDS));
+        MemberUser rt = null;
         if(rt == null){
             rt = userService.selectRtUserAllMessage(conf.USERID);
             rt = userService.selectRtUserMessage(conf.USERID);
-            redisTemplate.opsForHash().put("User","rtUserAll",rt);
-            redisTemplate.expire("User",1800, TimeUnit.SECONDS);
             System.out.println("我走了dao");
         }
-        mailService.setAdditionMessage(rt);
         mv.addObject("RtUserAll",rt);
         return mv;
     }
@@ -74,8 +65,8 @@ public class RtUserController {
      */
     @RequestMapping("update_password.do")
     @ResponseBody
-    public Integer  MyUpdatePassword(RtUser rtUser){
-        rtUser.setId(conf.USERID);
+    public Integer  MyUpdatePassword(MemberUser rtUser){
+        rtUser.setUserid(conf.USERID);
         int i = userService.updatePasswordById(rtUser);
         return i;
     }
@@ -147,28 +138,17 @@ public class RtUserController {
     @RequestMapping("insertMail.do")
     public ModelAndView insertMail(Mail mail){
         ModelAndView mv = new ModelAndView("personMessage/SendEMail");
-        mail.setSenderId(conf.USERID);
-        mail.setIsRead('0');
+        mail.setSendid(conf.USERID);
+        mail.setIsread('0');
         setBase(mail);
         mailService.insertMail(mail);
         System.out.println(123);
         return mv;
     }
 
-    @RequestMapping("insertRealMsg.do")
-    @ResponseBody
-    public int insertRealMsg(MultipartFile[] myfile,RealMsg realMsg){
-        realMsg.setId(conf.USERID);
-        setBase(realMsg);
-        userService.insertRealMsg(realMsg);
-        return  1;
-    }
 
     public void setBase(Base base){
-        base.setCreateRtUser(conf.USERNAME);
         base.setCreateTime(new Time(System.currentTimeMillis()));
-        base.setIsEffective('0');
-        base.setUpdateRtUser(conf.USERNAME);
         base.setUpdateTime(new Time(System.currentTimeMillis()));
 
     }

@@ -1,17 +1,13 @@
 package com.rtworld.service.personmessage.impl;
 
 import com.rtworld.dao.user.IMailDao;
-import com.rtworld.dao.user.IRtUserDao;
-import com.rtworld.pojo.user.AdditionMessage;
-import com.rtworld.pojo.user.Mail;
-import com.rtworld.pojo.user.RtUser;
+import com.rtworld.dao.user.IUserDao;
+import com.rtworld.pojo.Mail;
 import com.rtworld.service.personmessage.IMailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.criteria.CriteriaBuilder;
-import java.util.ArrayList;
 import java.util.List;
 @Transactional
 @Service
@@ -21,7 +17,7 @@ public class MailServiceImpl implements IMailService {
     private IMailDao mailDao;
 
     @Autowired
-    private IRtUserDao rtUserDao;
+    private IUserDao rtUserDao;
 
     @Override
     public List<Mail> getMyReciveridMails(int id) {
@@ -55,7 +51,7 @@ public class MailServiceImpl implements IMailService {
     public Mail selectMailById(int id) {
         Mail mail = null;
         mail = mailDao.selectMailById(id);
-        if("0".equals(mail.getIsRead()+"")){
+        if("0".equals(mail.getIsread()+"")){
             mailDao.readMail(id);
         }
         return mail;
@@ -106,19 +102,12 @@ public class MailServiceImpl implements IMailService {
         return i;
     }
 
-    public void setAdditionMessage(RtUser rtUser){
-        AdditionMessage additionMessage = new AdditionMessage();
-        additionMessage.setMyProject(getMyCountProject(rtUser.getId()));
-        additionMessage.setNotRead(getNotReadMailsCount(rtUser.getId()));
-        additionMessage.setOtherPeople(getLookMyProject(rtUser.getId()));
-        additionMessage.setSysMessage(getMySysCountProject(rtUser.getId()));
-        rtUser.setAdditionmessage(additionMessage);
-    }
+
 
     public void setrtUserName(List<Mail> list){
         for (Mail mail : list) {
-            mail.setSendName(rtUserDao.selectRtUserById(mail.getSenderId()).getRtUserName());
-            mail.setReciverName(rtUserDao.selectRtUserById(mail.getReciverId()).getRtUserName());
+            mail.setSendName(rtUserDao.selectRtUserById(mail.getSendid()).getUsername());
+            mail.setReceiveName(rtUserDao.selectRtUserById(mail.getReceiverid()).getUsername());
         }
     }
 }

@@ -1,8 +1,7 @@
 package com.rtworld.service.personmessage;
 
-import com.rtworld.pojo.user.AdditionMessage;
-import com.rtworld.pojo.user.Mail;
-import com.rtworld.pojo.user.RtUser;
+import com.rtworld.pojo.Mail;
+
 
 import java.util.List;
 
@@ -32,7 +31,6 @@ public interface IMailService {
     public Integer getMySysCountProject(int id);
     //得到看我的项目总人数
     public Integer getLookMyProject(int id);
-    //设置rtuser的额外信息
-    public void setAdditionMessage(RtUser rtUser);
+
 
 }

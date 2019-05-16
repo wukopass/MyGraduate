@@ -1,6 +1,5 @@
 package com.rtworld.handle.personmessage;
 
-import com.rtworld.pojo.user.RtUserEx;
 import com.rtworld.service.personmessage.IUserService;
 import com.rtworld.util.conf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -43,11 +42,11 @@ public class MailCheck{
 
         //发送邮件
         send(email, sb.toString());
-        RtUserEx rtUserEx = new RtUserEx();
+      /*  RtUserEx rtUserEx = new RtUserEx();
         rtUserEx.setUserId(conf.USERID);
         rtUserEx.setMailState('0');
         rtUserEx.setMailCode(token);
-        userService.updateMailState(rtUserEx);
+        userService.updateMailState(rtUserEx);*/
         return 1;
     }
     public static final String HOST = "smtp.163.com";
@@ -101,11 +100,11 @@ public class MailCheck{
     @RequestMapping("reciver.do")
     @ResponseBody
     public String reciver(String token,String id,String op){
-        RtUserEx rtUserEx = new RtUserEx();
+       /* RtUserEx rtUserEx = new RtUserEx();
         rtUserEx.setUserId(conf.USERID);
         rtUserEx.setMailState('1');
         rtUserEx.setMailCode(token);
-        userService.updateMailState(rtUserEx);
+        userService.updateMailState(rtUserEx);*/
         return "邮件验证成功：";
     }
 

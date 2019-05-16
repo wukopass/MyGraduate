@@ -1,6 +1,8 @@
 package com.rtworld.dao.user;
 
-import com.rtworld.pojo.user.Mail;
+
+
+import com.rtworld.pojo.Mail;
 
 import java.util.List;
 

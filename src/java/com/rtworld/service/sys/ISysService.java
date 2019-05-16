@@ -1,45 +1,35 @@
 package com.rtworld.service.sys;
 
-import com.rtworld.pojo.user.*;
+import com.rtworld.pojo.MemberUser;
+import com.rtworld.pojo.Role;
+import com.rtworld.pojo.MemberUser.*;
 import com.rtworld.util.Page;
 
 import java.util.List;
 import java.util.Set;
 
 public interface ISysService {
-    void init(Page<RtUser> page);
+    void init(Page<MemberUser> page);
 
-    List<RtRole> getRoles();
+    List<Role> getRoles();
 
-    RealMsg getRealMsg(RtUser rtUser);
+    void toBeUnValid( MemberUser rtUser);
 
-    void updateRealMsg(Page<RtUser> page);
+    MemberUser getOneUser( MemberUser rtUser);
 
-    void toBeUnValid(RtUser rtUser);
+    void setRoleToRtUser( MemberUser rtUser);
 
-    RtUser getOneUser(RtUser rtUser);
+    MemberUser msgCheck( MemberUser rtUser);
 
-    void setRoleToRtUser(RtUser rtUser);
+    void deleteAllMsg( MemberUser rtUser);
 
-    RtUser msgCheck(RtUser rtUser);
-
-    void deleteAllMsg(RtUser rtUser);
-
-    void updateEXMsg(RtUser rtUser, RtUserEx rtUserEx);
-
-    RtUser queryUserByTel(String tel);
+    MemberUser queryUserByTel(String tel);
 
     Set<String> findRolesByUserId(Integer id);
 
     Set<String> findPermissionsByUserId(Integer id);
 
-    void saveJob(HistoryJob historyJob);
+    MemberUser getOneByTel(String tel);
 
-
-
-    void updateRtUserEx(RtUser rtUser);
-
-    RtUser getOneByTel(String tel);
-
-    void setMsgById(RtUser rtUser, HistoryJob historyJob);
+    void setMsgById( MemberUser rtUser);
 }

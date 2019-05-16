@@ -1,11 +1,4 @@
 package com.rtworld.handle.InvestController;
-
-
-import com.rtworld.pojo.demand.Lable;
-import com.rtworld.pojo.quanInvest.City;
-import com.rtworld.pojo.quanInvest.invest;
-import com.rtworld.pojo.quanInvest.period;
-import com.rtworld.service.investService.IInvestService;
 import com.rtworld.util.StringUtils;
 import com.rtworld.util.conf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,27 +19,6 @@ import java.util.UUID;
 
 @Controller
 public class InvestController {
-    @Autowired
-    private IInvestService investService;
-
-    @RequestMapping(path="/saveInvest.do",method = RequestMethod.POST)
-    public ModelAndView saveInvest(invest invest){
-        invest.setCreateTime(new Date());
-        System.out.println(invest.getUsername());
-
-        ModelAndView mv=new ModelAndView();
-        int result =investService.saveInvest(invest);
-        if(result ==1 ){
-            mv.setViewName("addsuccess");
-        }
-        if(result ==0){
-            mv.addObject("msg","这个项目名已经存在");
-            mv.setViewName("new");
-        }
-        return mv;
-        }
-
-
 
     @RequestMapping(path="/newimgLoad.do",method = {RequestMethod.POST})
     @ResponseBody
@@ -143,60 +115,9 @@ public class InvestController {
         }
         return fileName;
     }
-    @RequestMapping(path = "/selectperiod.do")
-    //，在使用 @RequestMapping后，返回值通常解析为跳转路径，
-    // 但是加上 @ResponseBody 后返回结果不会被解析为跳转路径，
-    // 而是直接写入 HTTP response body 中
-    @ResponseBody
-    public List<period> selectAllPeriod(){
-        return  investService.selectAllPeriod();
-    }
-    @RequestMapping("/selectlable.do")
-    @ResponseBody
-    public  List<Lable> selectLable(){
-        return  investService.selectAllLable();
-    }
-    //城市多选框
-    @RequestMapping("/selectcity.do")
-    @ResponseBody
-    public  List<City> selectAllCity(){
-        return  investService.selectAllCity();
-    }
-    @RequestMapping("/selectindustry.do")
-    @ResponseBody
-    public  List<String> selectAllindustry(){
-        return  investService.selectAllindustry();
-    }
-    @RequestMapping("/investPage.do")
-    @ResponseBody
-    public List<invest> paging(HttpServletRequest request){
-            invest invest =new invest();
-          if(StringUtils.isNotEmpty(request.getParameter("pmessagetype"))){
-              invest.setPmessagetype(request.getParameter("pmessagetype"));
-          }
-          if(StringUtils.isNotEmpty(request.getParameter("pstage"))){
-              invest.setPstage(request.getParameter("pstage"));
-          }
-          if(StringUtils.isNotEmpty(request.getParameter("city"))){
-              invest.setCity(request.getParameter("city"));
-          }
-          if(StringUtils.isNotEmpty(request.getParameter("pname"))){
-              invest.setPname(request.getParameter("pname"));
-          }
-          if(StringUtils.isNotEmpty(request.getParameter("time"))){
-              invest.setCreateTime(new Date());
-          }
-          List<invest> list=investService.findInvest(invest);
-          return list;
-    }
 
-   @RequestMapping("/getInvestById.do")
-    @ResponseBody
-    public invest getInvestById(int id){
-      invest in=investService.getInvestById(id);
-      in.setIndustry(investService.getIndustryByid(id));
-       return in;
-    }
+
+
 
 
 }

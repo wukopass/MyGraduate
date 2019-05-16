@@ -11,8 +11,7 @@
     <!-- 开启事务注解 -->
     <tx:annotation-driven transaction-manager="myTransaction"/>
     <!-- 读取properties配置文件 -->
-    <context:property-placeholder location="classpath:jdbc.properties,
-    classpath:redis.properties"/>
+    <context:property-placeholder location="classpath:jdbc.properties"/>
     <!-- 配置数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
         <property name="url" value="${jdbc.url}"/>

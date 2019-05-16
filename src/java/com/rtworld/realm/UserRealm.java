@@ -1,7 +1,5 @@
 package com.rtworld.realm;
-
-
-import com.rtworld.pojo.user.RtUser;
+import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.sys.ISysService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
@@ -41,12 +39,11 @@ public class UserRealm extends AuthorizingRealm {
 	// 登录校验
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String tel = (String) token.getPrincipal();
-		RtUser user = sysService.queryUserByTel(tel);
+		MemberUser user = sysService.queryUserByTel(tel);
 		if(user.getIsLogin() == '1') throw new LockedAccountException();
-		return new SimpleAuthenticationInfo(user.getId(),
-				user.getRtPassword(),
-				ByteSource.Util.bytes(user.getSalt()),
-				getName());
+		return new SimpleAuthenticationInfo(user.getUserid(),
+				user.getPassword(),
+				ByteSource.Util.bytes(user.getSalt()), getName());
 		/*return null;*/
 	}
 

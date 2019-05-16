@@ -11,21 +11,11 @@
     </settings>
 
     <typeAliases>
-        <typeAlias type="com.rtworld.pojo.util.HistoryJob" alias="historyJob"/>
-        <typeAlias type="com.rtworld.pojo.user.RealMsg" alias="realMsg"/>
-        <typeAlias type="com.rtworld.pojo.user.Mail" alias="mail"/>
-        <typeAlias type="com.rtworld.pojo.user.RtUser" alias="rtUser"/>
-        <typeAlias type="com.rtworld.pojo.user.RtUserEx" alias="rtUserEx"/>
-        <typeAlias type="com.rtworld.pojo.util.CoopType" alias="coopType"/>
-        <typeAlias type="com.rtworld.pojo.util.InvestType" alias="investType"/>
-        <typeAlias type="com.rtworld.pojo.user.RtRole" alias="rtRole"/>
-        <typeAlias type="com.rtworld.pojo.util.Industry" alias="industry"/>
-        <typeAlias type="com.rtworld.pojo.util.UserAndType" alias="userAndType"/>
-        <typeAlias type="com.rtworld.pojo.guidance.Tutor" alias="tutor"/>
-        <typeAlias type="com.rtworld.pojo.user.RtAuthority" alias="rtAuthority"/>
-        <typeAlias type="com.rtworld.pojo.guidance.SuccessCase" alias="successCase"/>
-        <typeAlias type="com.rtworld.pojo.guidance.GoodField" alias="goodField"/>
-        <typeAlias type="com.rtworld.pojo.guidance.ProjectStage" alias="projectStage"/>
+        <typeAlias type="com.rtworld.pojo.Authority" alias="authority"></typeAlias>
+        <typeAlias type="com.rtworld.pojo.Company" alias="company"></typeAlias>
+        <typeAlias type="com.rtworld.pojo.Mail" alias="mail"></typeAlias>
+        <typeAlias type="com.rtworld.pojo.MemberUser" alias="memberuser"></typeAlias>
+        <typeAlias type="com.rtworld.pojo.Role" alias="role"></typeAlias>
     </typeAliases>
 
 <!--    <environments default="oracledb">
