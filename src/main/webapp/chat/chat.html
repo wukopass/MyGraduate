@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>即时聊天系统</title>
+    <style>
+        #chatWindow{
+            font-size: 12px;
+            font-family: "微软雅黑";
+            left:50%;
+            display: none;
+            margin-left:-400px;
+            height:640px;
+            width:800px;
+            position:absolute;
+            box-shadow: gray 0px 4px 5px;
+            background: url("/images/chat.jpg");
+            z-index:9;
+        }
+        #title{
+            height:40px;
+            line-height:40px;
+            background:-webkit-linear-gradient(left,#4B8CFE,#1FD1FF);
+            text-align: center;
+            color:white;
+        }
+        #data{
+            height:400px;
+            border-top:1px solid gray;
+            border-bottom:1px solid gray;
+            overflow:auto;
+            padding:5px;
+        }
+        #send{
+            height:110px;
+            padding:5px;
+            outline:none;
+            overflow:auto;
+        }
+        #util{
+            height:30px;
+        }
+        #btns{
+            text-align:right;
+            padding-right:10px;
+        }
+        .btnSetting{
+            display: inline-block;
+            line-height:28px;
+            font-height:12px;font-family:"微软雅黑";
+            text-align:center;
+            border-radius: 3px;
+            text-decoration:none;
+        }
+        #closeBtn{
+            width:70px;
+            height:26px;
+            color:black;
+            border:1px solid gray;
+            margin-right: 10px;
+        }
+        #closeBtn:hover{
+            background-color:#EFEFF0;
+        }
+        #sendBtn{
+            width:72px;
+            height:28px;
+            background-color:#4B8CFE;
+            color:white;
+            vertical-align: 1px;
+        }
+        #sendBtn:hover{
+            background-color:#47C8F8;
+        }
+        .dataBox{
+            border-radius:5px;
+            padding:3px;
+            background-color:#4B8CFE;
+            margin-left:20px;
+            color:white;
+            width:auto;
+            display: inline-block;
+        }
+        .fright{
+            float: right;
+            clear:both;
+            text-align:right;
+        }
+        .fleft{
+            float:left;
+            clear:both;
+        }
+        #util>a{
+            display: inline-block;
+            width:25px;
+            height:25px;
+            margin:0 6px;
+        }
+        #util>a:hover{
+            background: lightgray;
+            border-radius:4px;
+        }
+        .i1{
+            background: url("/images/i1.png") no-repeat center;
+        }
+        .i2 {
+            background: url("/images/i2.png") no-repeat center;
+        }
+        .i3 {
+            background: url("/images/i3.png") no-repeat center;
+        }
+        .dou{
+            clear:both;
+            text-align:center;
+            line-height:30px;
+            border-radius: 5px;
+            background-color:yellowgreen;
+        }
+    </style>
+    <link rel="stylesheet" href="/layui/css/layui.css" media="all">
+    <link rel="stylesheet" href="/emoji/lib/css/jquery.mCustomScrollbar.min.css"/>
+    <link rel="stylesheet" href="/emoji/dist/css/jquery.emoji.css"/>
+    <script type="text/javascript" src="/js/jquery-3.3.1.min.js"></script>
+    <script src="/layui/layui.js" charset="utf-8"></script>
+    <script src="/emoji/lib/script/jquery.mCustomScrollbar.min.js"></script>
+    <script src="/emoji/src/js/jquery.emoji.js"></script>
+    <script>
+        layui.use('layer',function (){
+            var ws;
+            var xpy,ypy;
+            $("#title")[0].ondragstart=function(e){
+                //开始拖拽之前，记录偏移量，因为浏览器以左上角计算位置
+                xpy=e.offsetX;
+                ypy=e.offsetY;
+            }
+            $("#title")[0].ondrag=function(e){
+                //松开鼠标默认会置零，这里不记录最后一次置零操作
+                if(e.pageX==0 && e.pageY==0) return;
+                //拖拽的时候，让窗口跟着鼠标移动
+                $("#chatWindow").css({"left":e.pageX-xpy,"top":e.pageY-ypy,"margin":0});
+            }
+
+
+            $("#join").click(function (){
+                if(!$("#nickname").val()){
+                    layer.msg('请输入',{icon:2,anim:2});
+                    return;
+                }
+                var url="ws://"+location.host+"/chat/"+$("#nickname").val();//ws是一种协议，代表长连接，HTTP为短链接
+                                                    //此处的$("#nickname").val()作为值，传递给后台的{a}里面，
+                                                    //后台的"/chat/{a}"里面的{a}
+                ws=new WebSocket(url);
+                //当和服务器连上时触发
+                ws.onopen=function (session) {
+                    $("#login").hide();
+                    $("#chatWindow").show();
+                };
+                /*前台接受后台的数据*/
+                ws.onmessage=function (msg) {
+                    //将String转换成json对象
+                    var chat=JSON.parse(msg.data);//chat是Chat对象
+                    if(chat.state==1) {//chat.nickName 和 chat.time调用的分别是Chat中的getChat()方法，和getTime()方法；
+                        $("#data").append("<span class='fright'>"+chat.nickName+"  "+chat.time+"<br>"+ chat.message + "</span>");
+                    }else{
+                        $("#data").append("<span class='fleft'>" +chat.nickName+"  "+chat.time+"<br>"+ chat.message + "</span>");
+                    }
+                }
+
+            });
+            $("#sendBtn").click(function (){
+                    //使用ws发送该消息至后台
+                    ws.send($("#send").html());
+                    $("#send").html("");
+                    $("#send").focus();
+            });
+            $(".i1").click(function (){
+                $("#myFile").click();//模拟点击一下
+            })
+            var reader=new FileReader();
+            $("#myFile").change(function (){
+                var thisFile=this.files[0];
+                reader.readAsDataURL(thisFile);//去解析这个图片
+                //清空一次状态，防止重复选择，不触发onchange
+                $("#myFile").val("");
+            });
+            //解析图片完成的时候会触发这个事件
+            reader.onload=function(){
+                var obj=document.createElement("img");
+                obj.src=reader.result;
+                $("#send").append(obj);
+            }
+           //加载emoji
+            $("#send").emoji({
+                button:"#emoji",
+                showTab:true,
+                animation:'fade',
+                icons:[{
+                    name:"QQ表情",
+                    path:"/emoji/dist/img/qq/",
+                    maxNum:92,
+                    file:".gif"
+                },{
+                    name:"贴吧表情",
+                    path:"/emoji/dist/img/tieba/",
+                    maxNum:50,
+                    file:".jpg"
+                }]
+            });
+            /*添加快捷键*/
+            $("#send").keydown(function (event) {
+                if(event.keyCode==13){
+                    $("#sendBtn").click();
+                }
+                if(event.keyCode==47){
+                    $("#closeBtn").click();
+                }
+            })
+            $("#nickname").keydown(function (event) {
+                if((event.altKey && event.keyCode==83)||event.keyCode==13){
+                    $("#join").click();
+                }
+            })
+        });
+
+       /* function dou(){
+            var x=$("#chatWindow").offset().left;
+            var y=$("#chatWindow").offset().top;
+            for(var i=0;i<=10;i++){
+                $("#chatWindow").animate({"left":x-10,"top":y-10},10);
+                $("#chatWindow").animate({"left":x,"top":y},10);
+                $("#chatWindow").animate({"left":x+10,"top":y+10});
+                $("#chatWindow").animate({"left":x,"top":y});
+            }
+        }*/
+    </script>
+
+</head>
+<body>
+<div class="layui-panel-window" align="center" id="login">
+    <div class="layui-input-inline">
+        <input id="nickname" placeholder="请录入昵称" autocomplete="off" class="layui-input">
+    </div>
+
+    <div class="layui-inline" id="layerDemo" style="margin-bottom: 0;">
+        <button data-method="offset" data-type="auto" class="layui-btn layui-btn-normal" id="join">加入聊天</button>
+    </div>
+</div>
+
+<div id="chatWindow">
+    <div id="title"></div>
+    <div id="data"></div>
+    <div id="util">
+        <input accept=".jpg,.gif,.png,.bmp,.jpeg" style="display:none" type="file" id="myFile">
+        <a class="i1" href="javascript:;"></a>
+        <a id="emoji" class="i2" href="javascript:;"></a>
+        <a class="i3" href="javascript:;"></a>
+    </div>
+    <div id="send" contenteditable="true"></div>
+    <div id="btns">
+        <a id="closeBtn" class="btnSetting" href="javascript:;">关闭(<u>C</u>)</a>
+        <a id="sendBtn" class="btnSetting" href="javascript:;">发送(<u>S</u>)</a>
+    </div>
+</div>
+</body>
+</html>

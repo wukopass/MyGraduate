@@ -9,4 +9,21 @@
    <select id="findUserByUserName" parameterType="String" resultType="MemberUser">
         select * from memberuser where username = #{username}
    </select>
+
+    <select id="checkUsernameValid" parameterType="String" resultType="int">
+        select count(1) from memberuser where username = #{username}
+    </select>
+
+    <select id="checkMailValid" parameterType="String" resultType="int">
+        select count(1) from memberuser where mail = #{mail}
+    </select>
+    <insert id="adddUser" parameterType="MemberUser"  useGeneratedKeys="true">
+        insert into memberuser(userid,username,password,tel,mail,createtime,updatetime,iseffective,salt)
+        values (userid,#{username},#{password},#{tel},#{mail},#{createtime},#{updatetime},#{iseffective},#{salt});
+    </insert>
+
+
+
+
+
 </mapper>

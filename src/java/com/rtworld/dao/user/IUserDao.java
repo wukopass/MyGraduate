@@ -51,5 +51,9 @@ public interface IUserDao {
 
    //用户名查找用户
     MemberUser findUserByUserName(String username);
+    //检查用户名和邮箱是不是有效 5.17
+    int checkUsernameValid(String username);
+    int checkMailValid(String mail);
 
+    int adddUser(MemberUser memberUser);
 }

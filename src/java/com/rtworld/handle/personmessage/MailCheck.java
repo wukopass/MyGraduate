@@ -1,7 +1,6 @@
 package com.rtworld.handle.personmessage;
 
 import com.rtworld.service.personmessage.IUserService;
-import com.rtworld.util.conf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,7 +16,7 @@ import java.util.UUID;
 
 @RequestMapping("Mail")
 @Controller
-public class MailCheck{
+public class   MailCheck{
     @Autowired
     private IUserService userService;
     @RequestMapping("sendMail.do")
@@ -43,7 +42,7 @@ public class MailCheck{
         //发送邮件
         send(email, sb.toString());
       /*  RtUserEx rtUserEx = new RtUserEx();
-        rtUserEx.setUserId(conf.USERID);
+        rtUserEx.setUserId(Cons.USERID);
         rtUserEx.setMailState('0');
         rtUserEx.setMailCode(token);
         userService.updateMailState(rtUserEx);*/
@@ -101,7 +100,7 @@ public class MailCheck{
     @ResponseBody
     public String reciver(String token,String id,String op){
        /* RtUserEx rtUserEx = new RtUserEx();
-        rtUserEx.setUserId(conf.USERID);
+        rtUserEx.setUserId(Cons.USERID);
         rtUserEx.setMailState('1');
         rtUserEx.setMailCode(token);
         userService.updateMailState(rtUserEx);*/

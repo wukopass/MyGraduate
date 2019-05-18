@@ -2,24 +2,32 @@ package com.rtworld.pojo;
 
 
 import java.io.Serializable;
-import java.lang.reflect.Member;
-import java.sql.Timestamp;
-
 public class MemberUser implements Serializable {
-
   private Integer userid;
   private String username;
   private String password;
   private String tel;
   private String mail;
-  private java.sql.Timestamp createtime;
-  private java.sql.Timestamp updatetime;
+  private String createtime;
+  private String updatetime;
   private int iseffective;
   private Role role;
+  public int getLoginState() {
+    return loginState;
+  }
+
+  private int loginState;
+
   //判断是不是被锁
   private Boolean locked = Boolean.FALSE;
   private String salt;
+  public MemberUser() {
+  }
 
+  public MemberUser(String username, String password) {
+    this.username = username;
+    this.password = password;
+  }
   public Boolean getLocked() {
     return locked;
   }
@@ -63,9 +71,8 @@ public class MemberUser implements Serializable {
 
   //加盐处理
   public String getSalt() {
-    return  username + salt;
+    return  salt;
   }
-
   public void setSalt(String salt) {
     this.salt = salt;
   }
@@ -118,21 +125,6 @@ public class MemberUser implements Serializable {
     this.mail = mail;
   }
 
-  public Timestamp getCreatetime() {
-    return createtime;
-  }
-
-  public void setCreatetime(Timestamp createtime) {
-    this.createtime = createtime;
-  }
-
-  public Timestamp getUpdatetime() {
-    return updatetime;
-  }
-
-  public void setUpdatetime(Timestamp updatetime) {
-    this.updatetime = updatetime;
-  }
 
   public int getIseffective() {
     return iseffective;
@@ -140,5 +132,29 @@ public class MemberUser implements Serializable {
 
   public void setIseffective(int iseffective) {
     this.iseffective = iseffective;
+  }
+
+  public String getCreatetime() {
+    return createtime;
+  }
+
+  public void setCreatetime(String createtime) {
+    this.createtime = createtime;
+  }
+
+  public String getUpdatetime() {
+    return updatetime;
+  }
+
+  public void setUpdatetime(String updatetime) {
+    this.updatetime = updatetime;
+  }
+
+  public void setUserid(Integer userid) {
+    this.userid = userid;
+  }
+
+  public void setLoginState(int loginState) {
+    this.loginState = loginState;
   }
 }

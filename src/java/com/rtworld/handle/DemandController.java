@@ -3,27 +3,17 @@ package com.rtworld.handle;
 
 
 
-import com.rtworld.util.Page;
-import com.rtworld.util.StringUtils;
-import com.rtworld.util.conf;
-import org.apache.ibatis.annotations.Param;
-import org.mortbay.util.StringUtil;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.rtworld.util.Cons;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import sun.misc.BASE64Decoder;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.io.File;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
 import java.util.UUID;
 
 @Controller
@@ -35,7 +25,7 @@ public class DemandController {
         int index1 = bs.indexOf("/") + 1;
         int index2 = bs.indexOf(";");
         String hz = bs.substring(index1, index2);
-        String fileName = conf.FILEROOT + UUID.randomUUID().toString() + "." + hz;
+        String fileName = Cons.FILEROOT + UUID.randomUUID().toString() + "." + hz;
 
         BASE64Decoder decoder = new BASE64Decoder();
         OutputStream os = null;
@@ -101,7 +91,7 @@ public class DemandController {
 
         int index1 = name.indexOf(".") + 1;
         String hz=name.substring(index1,name.length());
-        String fileName = conf.FILEROOT + UUID.randomUUID().toString() + "." + hz;
+        String fileName = Cons.FILEROOT + UUID.randomUUID().toString() + "." + hz;
 
         BASE64Decoder decoder = new BASE64Decoder();
         OutputStream os = null;

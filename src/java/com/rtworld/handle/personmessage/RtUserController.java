@@ -1,26 +1,19 @@
 package com.rtworld.handle.personmessage;
 
-import com.rtworld.dao.user.IMailDao;
 import com.rtworld.pojo.Base;
 import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.personmessage.IMailService;
 import com.rtworld.service.personmessage.IUserService;
-import com.rtworld.util.conf;
+import com.rtworld.util.Cons;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import redis.clients.jedis.Jedis;
-import redis.clients.jedis.JedisPool;
 
 import java.sql.Time;
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 @Controller
 @RequestMapping("rtUser")
@@ -37,8 +30,8 @@ public class RtUserController {
         ModelAndView mv = new ModelAndView("personMessage/user_info");
         MemberUser rt = null;
         if(rt == null){
-            rt = userService.selectRtUserAllMessage(conf.USERID);
-            rt = userService.selectRtUserMessage(conf.USERID);
+            rt = userService.selectRtUserAllMessage(Cons.USERID);
+            rt = userService.selectRtUserMessage(Cons.USERID);
             System.out.println("我走了dao");
         }
         mv.addObject("RtUserAll",rt);
@@ -54,7 +47,7 @@ public class RtUserController {
     @ResponseBody
     public List<Mail> mySendMail(){ ;
         List<Mail> list = null;
-        list = mailService.getMySendMails(conf.USERID);
+        list = mailService.getMySendMails(Cons.USERID);
         return list;
     }
 
@@ -66,7 +59,7 @@ public class RtUserController {
     @RequestMapping("update_password.do")
     @ResponseBody
     public Integer  MyUpdatePassword(MemberUser rtUser){
-        rtUser.setUserid(conf.USERID);
+        rtUser.setUserid(Cons.USERID);
         int i = userService.updatePasswordById(rtUser);
         return i;
     }
@@ -110,7 +103,7 @@ public class RtUserController {
     @ResponseBody
     public List<Mail> myReciverMail(){
         List<Mail> list = null;
-        list = mailService.getMyReciveridMails(conf.USERID);
+        list = mailService.getMyReciveridMails(Cons.USERID);
         return list;
     }
 
@@ -123,7 +116,7 @@ public class RtUserController {
     @ResponseBody
     public List<Mail> MySysMails(){
         List<Mail> list = null;
-        list = mailService.getMySysMails(conf.USERID);
+        list = mailService.getMySysMails(Cons.USERID);
         return list;
     }
     //转接邮件jsp
@@ -138,7 +131,7 @@ public class RtUserController {
     @RequestMapping("insertMail.do")
     public ModelAndView insertMail(Mail mail){
         ModelAndView mv = new ModelAndView("personMessage/SendEMail");
-        mail.setSendid(conf.USERID);
+        mail.setSendid(Cons.USERID);
         mail.setIsread('0');
         setBase(mail);
         mailService.insertMail(mail);

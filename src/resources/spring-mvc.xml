@@ -20,7 +20,7 @@
     <!-- 转发视图页面添加前后缀 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <!-- action中return的页面的前缀 -->
-        <property name="prefix" value="/jsp/" />
+        <property name="prefix" value="/Quan/" />
         <!-- action中return的页面的后缀 -->
         <property name="suffix" value=".jsp" />
     </bean>

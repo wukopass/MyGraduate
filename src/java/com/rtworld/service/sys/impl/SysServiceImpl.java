@@ -5,8 +5,8 @@ import com.rtworld.pojo.Authority;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.pojo.Role;
 import com.rtworld.service.sys.ISysService;
+import com.rtworld.util.Cons;
 import com.rtworld.util.Page;
-import com.rtworld.util.conf;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -89,7 +89,7 @@ public class SysServiceImpl implements ISysService {
         }else {
             rtUser.setRole(roleDao.getRole(rtUser.getUserid()));
         }
-        conf.USERID = rtUser.getUserid();
+        Cons.USERID = rtUser.getUserid();
         return rtUser;
     }
 
