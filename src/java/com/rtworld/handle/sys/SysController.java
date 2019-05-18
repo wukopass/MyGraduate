@@ -87,6 +87,14 @@ public class SysController {
       }
 
     }
+
+    @RequestMapping("/logout.do")
+    public ModelAndView loginOut(HttpServletRequest request)  {
+        //注销session
+        request.getSession().invalidate();
+        //response.sendRedirect("/Quan/mainMenu.jsp");
+        return new ModelAndView("redirect:/Quan/mainMenu.jsp");
+    }
         public static void main(String[] args) {
             String algorithmName = "md5";
             String username = "小吴";

@@ -115,7 +115,7 @@
             <div class="t-link">
                 <span style="font-size: 15px"> 欢迎</span>
                 <span style="color:green;font-size: 18px">${sessionScope.memberUser.username}</span>
-                 <form action ="${ctx}/logout.do">
+                 <form action ="/sys/logout.do" method="post">
                      <input type="submit" name="logout" value="注销" class="input-but ">
                  </form>
                 <form action ="${ctx}/backin.do">

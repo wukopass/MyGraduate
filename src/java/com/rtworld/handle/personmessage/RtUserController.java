@@ -12,11 +12,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
 import java.util.List;
 
 @Controller
-@RequestMapping("rtUser")
+@RequestMapping("/user")
 public class RtUserController {
 
     @Autowired
@@ -24,7 +25,10 @@ public class RtUserController {
 
     @Autowired
     private IMailService mailService;
-
+    @RequestMapping("/select.do")
+    public ModelAndView pageUser(HttpServletRequest request){
+        return new ModelAndView();
+    }
     @RequestMapping("myMessage.do")
     public ModelAndView rtUserMessage(){
         ModelAndView mv = new ModelAndView("personMessage/user_info");

@@ -1,5 +1,6 @@
 package com.rtworld.aspect;
 
+import com.rtworld.pojo.MemberUser;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.After;
 import org.aspectj.lang.annotation.AfterReturning;
@@ -35,14 +36,14 @@ public class BookAOP {
 		System.err.println("this is after.................");
 	}
 	
-	@AfterReturning("method()")
-	public void afterReturning(JoinPoint joinPoint){
+	/*@AfterReturning("method()")*/
+	/*public void afterReturning(JoinPoint joinPoint) {
 		// 1:在切面方法里面获取一个request，
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		// 2:通过springAOP切面JoinPoint类对象，获取该类，或者该方法，或者该方法的参数
-		Class<? extends Object> clazz =  joinPoint.getTarget().getClass();
+		Class<? extends Object> clazz = joinPoint.getTarget().getClass();
 		String controllerOperation = clazz.getName();
-		if(clazz.isAnnotationPresent(Operation.class)){
+		if (clazz.isAnnotationPresent(Operation.class)) {
 			// 当前controller操作的名称
 			controllerOperation = clazz.getAnnotation(Operation.class).name();
 		}
@@ -53,23 +54,22 @@ public class BookAOP {
 		Method[] methods = clazz.getDeclaredMethods();
 		String methodOperation = "";
 		for (Method m : methods) {
-			if(m.equals(method)){
+			if (m.equals(method)) {
 				methodOperation = m.getName();
-				if(m.isAnnotationPresent(Operation.class)){
+				if (m.isAnnotationPresent(Operation.class)) {
 					methodOperation = m.getAnnotation(Operation.class).name();
 				}
 			}
+			MemberUser username = (MemberUser) request.getSession().getAttribute("memberUser");
+			if (username != null) {
+				logger.debug(username + " 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
+						+ request.getRemoteHost());
+			} else {
+				logger.debug("未知用户 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
+						+ request.getRemoteHost());
+			}
+
 		}
-		//获取用户信息
-		String username = (String) request.getSession().getAttribute("LOGIN_USER");
-		if(username != null){
-			logger.debug(username + " 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
-					+ request.getRemoteHost());
-		}else{
-			logger.debug("未知用户 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
-					+ request.getRemoteHost());
-		}
-		
-	}	
- 
+
+	}*/
 }

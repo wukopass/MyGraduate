@@ -98,7 +98,7 @@
                 <entry key="authc" value-ref="formAuthenticationFilter"/>
             </util:map>
         </property>
-     <!--   <property name="filterChainDefinitions">
+     <property name="filterChainDefinitions">
             <value>
                 **register* = anon
                 /*/**register* = anon
@@ -109,13 +109,13 @@
                 /druid/* = anon
                 /player.html = anon
                 /rest/** = anon
-                /trainee*/** = anon
+                /user*/** = anon
                 /unauthorized.jsp = anon
                 /role* = authc,roles[admin]
                 /permission* = authc,perms["user:create"]
                 /**/*.jsp = authc
                 /**/*.do = authc
             </value>
-        </property>-->
+        </property>
     </bean>
 </beans>
