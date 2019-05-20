@@ -3,6 +3,7 @@ package com.rtworld.service.personmessage.impl;
 
 import com.rtworld.dao.user.IUserDao;
 
+import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.personmessage.IUserService;
 import com.rtworld.util.Cons;
@@ -36,7 +37,6 @@ public class UserServiceImpl implements IUserService {
     public MemberUser selectRtUserAllMessage(int id) {
         MemberUser rt = null;
         rt = userDao.selectRtUserById(id);
-        //rt.setRtUserEx(rtUserExDao.selectRtUserExById(id));
         return rt;
     }
 
@@ -82,6 +82,11 @@ public class UserServiceImpl implements IUserService {
     @Override
     public MemberUser findUser(String username) {
         return userDao.findUserByUserName(username);
+    }
+
+    @Override
+    public MemberUser findUserById(int userid) {
+        return userDao.finduserById(userid);
     }
 
     //加密算法返回加密后的密码和盐保存到数据库,5.17(done)

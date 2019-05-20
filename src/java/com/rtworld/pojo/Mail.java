@@ -12,7 +12,7 @@ public class Mail  extends Base implements Serializable {
   private int isread;
   private int sendid;
   private int receiverid;
-  private java.sql.Timestamp createtime;
+  private String createtime;
   private int iseffective;
   private String sendName;
   private String receiveName;
@@ -81,19 +81,19 @@ public class Mail  extends Base implements Serializable {
     this.receiverid = receiverid;
   }
 
-  public Timestamp getCreatetime() {
-    return createtime;
-  }
-
-  public void setCreatetime(Timestamp createtime) {
-    this.createtime = createtime;
-  }
-
   public int getIseffective() {
     return iseffective;
   }
 
   public void setIseffective(int iseffective) {
     this.iseffective = iseffective;
+  }
+
+  public String getCreatetime() {
+    return createtime;
+  }
+
+  public void setCreatetime(String createtime) {
+    this.createtime = createtime;
   }
 }

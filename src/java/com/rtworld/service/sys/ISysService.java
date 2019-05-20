@@ -1,5 +1,6 @@
 package com.rtworld.service.sys;
 
+import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.pojo.Role;
 import com.rtworld.pojo.MemberUser.*;
@@ -31,7 +32,7 @@ public interface ISysService {
 
     Set<String> findPermissionsByUserId(Integer id);
 
-    MemberUser getOneByTel(String tel);
-
     void setMsgById( MemberUser rtUser);
+    //发送邮件
+    int sendMail(Mail mail);
 }

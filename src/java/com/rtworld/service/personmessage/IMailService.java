@@ -24,13 +24,15 @@ public interface IMailService {
     List<Mail> getMySysMails(int id);
 
     //未读信息的数量
-    public Integer getNotReadMailsCount(int id);
+    Integer getNotReadMailsCount(int id);
     //得到我的项目总量
-    public Integer getMyCountProject(int id);
+     Integer getMyCountProject(int id);
     //得到我的站内信息总量
-    public Integer getMySysCountProject(int id);
+   Integer getMySysCountProject(int id);
     //得到看我的项目总人数
-    public Integer getLookMyProject(int id);
+    Integer getLookMyProject(int id);
 
+    String sendMail(int  receiverMailId,String content);
 
+    int  insertMail(int senderMailId, int receiverMailId,String title, String content);
 }

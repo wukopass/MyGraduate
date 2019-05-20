@@ -1,5 +1,6 @@
 package com.rtworld.dao.user;
 
+import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 
 import com.rtworld.util.Page;
@@ -10,7 +11,7 @@ public interface IUserDao {
 
     MemberUser selectRtUserByRtUser(MemberUser memberUser);
     //通过id查找用户
-    MemberUser selectRtUserById(int id);
+    MemberUser selectUserById(int id);
     //查看总数
     int selectCount();
 
@@ -53,7 +54,12 @@ public interface IUserDao {
     MemberUser findUserByUserName(String username);
     //检查用户名和邮箱是不是有效 5.17
     int checkUsernameValid(String username);
+    
     int checkMailValid(String mail);
-
+    
     int adddUser(MemberUser memberUser);
+    
+    MemberUser finduserById(int userid);
+
+    int storeMail(Mail mail);
 }

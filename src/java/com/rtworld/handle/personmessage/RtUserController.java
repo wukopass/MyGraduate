@@ -47,7 +47,7 @@ public class RtUserController {
      * @param
      * @return
      */
-    @RequestMapping("mySendMails.do")
+    @RequestMapping("/mySendMails.do")
     @ResponseBody
     public List<Mail> mySendMail(){ ;
         List<Mail> list = null;
@@ -60,7 +60,7 @@ public class RtUserController {
      * @param rtUser
      * @return
      */
-    @RequestMapping("update_password.do")
+    @RequestMapping("/update_password.do")
     @ResponseBody
     public Integer  MyUpdatePassword(MemberUser rtUser){
         rtUser.setUserid(Cons.USERID);
@@ -132,7 +132,7 @@ public class RtUserController {
         return mv;
     }
 
-    @RequestMapping("insertMail.do")
+    @RequestMapping("/insertMail.do")
     public ModelAndView insertMail(Mail mail){
         ModelAndView mv = new ModelAndView("personMessage/SendEMail");
         mail.setSendid(Cons.USERID);

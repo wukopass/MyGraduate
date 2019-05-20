@@ -1,5 +1,6 @@
 package com.rtworld.service.personmessage;
 
+import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.vo.RegisterVO;
 
@@ -13,4 +14,8 @@ public interface IUserService {
     void registerUser(RegisterVO vo);
 
     MemberUser findUser(String username);
+
+    MemberUser findUserById(int userid);
+
+
 }

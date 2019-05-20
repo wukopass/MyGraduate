@@ -2,6 +2,7 @@ package com.rtworld.service.sys.impl;
 
 import com.rtworld.dao.user.*;
 import com.rtworld.pojo.Authority;
+import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.pojo.Role;
 import com.rtworld.service.sys.ISysService;
@@ -25,8 +26,8 @@ public class SysServiceImpl implements ISysService {
     @Autowired
     private IAuthority authorityDao;
 
-
-
+    @Autowired
+    private IMailDao mailDao;
     public void init(Page<MemberUser> page) {
         page.setCounts(userDao.selectCountByPage(page));
         page.setBeans(userDao.selectRtUsersByRtUser(page));
@@ -112,15 +113,20 @@ public class SysServiceImpl implements ISysService {
     }
 
 
-    @Override
-    public MemberUser getOneByTel(String tel) {
-        return userDao.selectRtUserByTel(tel);
-    }
 
     @Override
     public void setMsgById(MemberUser rtUser) {
         userDao.saveRtUser(rtUser);
         userDao.changeUser(rtUser);
         rtUser.setRole(roleDao.getRole(rtUser.getUserid()));
+    }
+
+    @Override
+    public int sendMail(Mail mail) {
+        int sendId = mail.getSendid();
+        int receiverId = mail.getReceiverid();
+        String receiveMail = userDao.finduserById(receiverId).getMail();
+
+        return 0;
     }
 }
