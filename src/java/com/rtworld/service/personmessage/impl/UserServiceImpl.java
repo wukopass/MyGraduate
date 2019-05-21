@@ -29,14 +29,14 @@ public class UserServiceImpl implements IUserService {
     @Override
     public MemberUser selectRtUserMessage(int id) {
        MemberUser  rt = null;
-        rt = userDao.selectRtUserById(id);
+        rt = userDao.selectUserById(id);
         return rt;
     }
 
     @Override
     public MemberUser selectRtUserAllMessage(int id) {
         MemberUser rt = null;
-        rt = userDao.selectRtUserById(id);
+        rt = userDao.selectUserById(id);
         return rt;
     }
 

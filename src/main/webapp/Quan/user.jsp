@@ -153,7 +153,7 @@
     </div>
     <input type="button" id="search" value="查询" class="layui-btn layui-btn-sm">
 </form>
-<table class="layui-table" lay-data="{url:'/user.do?method=page', page:true, id:'pageTable',toolbar: '#myBar', parseData:fmtData, done: function(){autoFrame(${param.id})}}" lay-filter="tableBind">
+<table class="layui-table" lay-data="{url:'/user.do', page:true, id:'pageTable',toolbar: '#myBar', parseData:fmtData, done: function(){autoFrame(${param.id})}}" lay-filter="tableBind">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox'}"></th>

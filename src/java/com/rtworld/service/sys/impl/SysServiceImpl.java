@@ -47,7 +47,7 @@ public class SysServiceImpl implements ISysService {
     }
 
     public  MemberUser getOneUser( MemberUser  memberUser) {
-        return userDao.selectRtUserById( memberUser.getUserid());
+        return userDao.selectUserById( memberUser.getUserid());
     }
 
     @Override
@@ -57,7 +57,7 @@ public class SysServiceImpl implements ISysService {
 
 
     public MemberUser msgCheck(MemberUser rtUser) {
-        rtUser = userDao.selectRtUserById(rtUser.getUserid());
+        rtUser = userDao.selectUserById(rtUser.getUserid());
         userDao.changeRole(rtUser);
        // userDao.changeCompanyName(rtUser);
         rtUser.setRole(roleDao.getRole(rtUser.getUserid()));

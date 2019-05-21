@@ -38,7 +38,6 @@ public class MailServiceImpl implements IMailService {
     public List<Mail> getMySendMails(int id) {
         List<Mail> list = null;
         list = mailDao.selectMailsBySenderId(id);
-        setrtUserName(list);
         return list;
     }
     @Override

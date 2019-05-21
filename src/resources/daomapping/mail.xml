@@ -6,4 +6,8 @@
         insert into mail(id,title,content,isread,sendid,receiverid,createtime,iseffective)
         values (id,#{title},#{content},#{isread},#{sendid},#{receiverid},#{createtime},#{iseffective})
     </insert>
+    <select id="selectMailsBySenderId" resultType="Mail" parameterType="int">
+        select * from mail where sendid = #{id} and iseffective= 0
+        order by createTime desc
+    </select>
 </mapper>

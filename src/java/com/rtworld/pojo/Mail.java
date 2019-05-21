@@ -96,4 +96,20 @@ public class Mail  extends Base implements Serializable {
   public void setCreatetime(String createtime) {
     this.createtime = createtime;
   }
+
+  @Override
+  public String toString() {
+    return "Mail{" +
+            "id=" + id +
+            ", title='" + title + '\'' +
+            ", content='" + content + '\'' +
+            ", isread=" + isread +
+            ", sendid=" + sendid +
+            ", receiverid=" + receiverid +
+            ", createtime='" + createtime + '\'' +
+            ", iseffective=" + iseffective +
+            ", sendName='" + sendName + '\'' +
+            ", receiveName='" + receiveName + '\'' +
+            '}';
+  }
 }

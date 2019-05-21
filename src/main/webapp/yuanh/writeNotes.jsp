@@ -71,9 +71,7 @@
                 }
             });
         });
-        function fmtData(res) {
-            return {'code': 0 ,'msg':'','count': res.counts,'data': res.beans};
-        }
+
     </script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/Quan/css/style.css" type="text/css" media="all"/>
@@ -106,7 +104,6 @@
 
 <div id="detail2-box" class="clearfix">
 	<div class="tit-80"><a href="list-text2.html">学习笔记</a> - 查看详情</div>
-
     <form class="layui-form" action="/writeNotes.do">
         <input type="hidden" name="method" value="newNotes">
         <div class="model">
@@ -170,23 +167,38 @@
                 </div>
             </div>
             <br><br>
-            <table class="layui-table" lay-data="{url:'/writeNotes.do?method=page', page:true, id:'pageTable',toolbar:'#myBar',parseData:fmtData}" lay-filter="tableBind">
-                <thead>
-                <tr>
-                    <th lay-data="{type:'numbers'}">序号</th>
-                    <th lay-data="{field:'notesName'}">笔记名称</th>
-                    <th lay-data="{field:'userName'}">创建者</th>
-                    <th lay-data="{field:'writeTime',sort: true}">创建时间</th>
-                    <th lay-data="{field:'notesType'}">笔记类别</th>
-                    <th lay-data="{field:'keyWord'}">关键字</th>
-                    <th lay-data="{field:'isPublic', sort: true,templet:function(res){return res.isPublic == 1 ? '<font color=green>公开</font>': '<font color=gray>不公开</font>'}}">是否公开</th>
-                    <th lay-data="{fixed: 'right', toolbar: '#btns'}">操作</th>
-                </tr>
-                </thead>
-            </table>
-            <script type="text/html" id="btns">
-                <a id="look" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
+            <table id="demo" lay-filter="test"></table>
+            <script>
+                layui.use('table', function(){
+                    var table = layui.table;
+                    //第一个实例
+                    table.render({
+                        elem: '#demo'
+                        ,height: 312
+                        ,url: '/mail/selectMail.do' //数据接口
+                        ,where:{id:'${sessionScope.memberUser.userid}'}
+                        ,parseData:function(res) { //res 即为原始返回的数据
+                            return {
+                                "code": 0, //解析接口状态
+                                "msg": "", //解析提示文本
+                                "count": 10, //解析数据长度
+                                "data": res.data //解析数据列表
+                            };
+                        }
+                        ,page: false //开启分页
+                        ,cols:[[ //表头
+                             {field: 'id', title: 'ID', width:80, sort: true}
+                           /* ,{field: 'username', title: '用户名', width:80}*/
+                            ,{field:'createtime',title:'创建时间',width:80,sort:true}
+                            ,{field:'title', title: '标题', width:80, sort: true}
+                            ,{fixed:'right',toolbar:'#btns'}
+                        ]]
+                    });
+                });
             </script>
+            <script type="text/html" id="btns">
+                <a id="look" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看邮件</a>
+            </script>--%>
             <div style="height:175px;width:1000px">
                 <img src="/images/foot.jpg">
             </div>
