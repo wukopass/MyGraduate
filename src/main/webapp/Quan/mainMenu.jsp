@@ -118,7 +118,7 @@
                      <input type="submit" name="logout" value="注销" class="input-but ">
                  </form>
                 <%--传入用户的id进入后台--%>
-                <form action ="/sys/redirect.do" method="post">
+                <form action ="/sys/backMenu.do" method="post">
                     <input type="hidden" name="userid" value=${sessionScope.memberUser.userid}>
                     <input type="submit" name="backMenu" value="进入后台" class="input-but ">
                 </form>

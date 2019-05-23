@@ -18,9 +18,6 @@ public interface IUserService {
 
     MemberUser findUser(String username);
 
-    MemberUser findUserById(int userid);
-
-
     List<MemberUser> queryUserByVo();
 
     void deletUserByUserId(int userid);

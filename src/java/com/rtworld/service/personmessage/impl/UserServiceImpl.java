@@ -91,11 +91,6 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public MemberUser findUserById(int userid) {
-        return userDao.finduserById(userid);
-    }
-
-    @Override
     public List<MemberUser> queryUserByVo() {
         return userDao.queryUserByVo();
     }
@@ -112,7 +107,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     public MemberUser grantAuth(int userid) {
-        MemberUser user = userDao.finduserById(userid);
+        MemberUser user = userDao.selectUserById(userid);
         List<Role> roles = roleDao.findRolesByUserId(userid);
         List<Authority> authorities = authorityDao.getPermissionsById(userid);
         user.setRoles(roles);

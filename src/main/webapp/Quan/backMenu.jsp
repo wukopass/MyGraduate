@@ -97,8 +97,8 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <!-- 头像 -->
-                    <img  onerror="this.src='${ctx}/images/default.ico'" src="${ctx}/user.do?method=initFace&face=${userback.face}" class="layui-nav-img">
-                    ${sessionScope.userback.username}
+                    <img  onerror="this.src='${ctx}/images/default.ico'" src="${ctx}/user.do?method=initFace&face=${userBack.face}" class="layui-nav-img">
+                    ${sessionScope.userBack.username}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">基本资料</a></dd>
@@ -113,12 +113,13 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree" lay-filter="test">
-                <c:forEach var="menu" items="${sessionScope.userback.menus}">
+                <li class="layui-nav-item"><a tab-id="000" href="javascript:;"></a></li>
+                <c:forEach var="menu" items="${userBack.authorities}">
                     <li class="layui-nav-item layui-nav-itemed">
                         <c:if test="${menu.pid == 0}">
                             <a href="javascript:;">${menu.mname}</a>
                             <dl class="layui-nav-child">
-                                <c:forEach var="childMenu" items="${sessionScope.userback.menus}">
+                                <c:forEach var="childMenu" items="${userBack.authorities}">
                                     <c:if test="${childMenu.pid == menu.mid}">
                                         <dd>
                                                 <%--<a data-type="tabAdd"

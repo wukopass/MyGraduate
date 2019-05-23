@@ -15,6 +15,7 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
@@ -118,24 +119,25 @@ public class SysController {
      * @param userid
      * @return
      */
-    @RequestMapping("/redirect.do")
+   /* @RequestMapping("/redirect.do")
     public  ModelAndView redirect(int userid){
         ModelAndView myMv = new ModelAndView();
         myMv.addObject("userid",userid);
         myMv.setViewName("/backMenu");
         return myMv;
-    }
+    }*/
     @RequestMapping("/backMenu.do")
     @ResponseBody
-    public String getBackMenuByUserId(int userid){
+    public ModelAndView getBackMenuByUserId(int userid){
+        ModelAndView mv = new ModelAndView();
         MemberUser user = null;
         user = userService.grantAuth(userid);
-        JSONObject obj = new JSONObject();
-        obj.put("backMenu",user);
+        mv.addObject("userBack",user);
+        mv.setViewName("/backMenu");
         if(user == null){
             return  null;
         }
-        return  obj.toJSONString();
+        return mv;
     }
 
 

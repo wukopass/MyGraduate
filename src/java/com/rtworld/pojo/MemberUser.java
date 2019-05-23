@@ -3,7 +3,6 @@ package com.rtworld.pojo;
 
 import java.io.Serializable;
 import java.util.List;
-
 public class MemberUser implements Serializable {
   private Integer userid;
   private String username;
@@ -14,23 +13,23 @@ public class MemberUser implements Serializable {
   private String updatetime;
   private int iseffective;
   private Role role;
-  private List<Role> Roles;
-  private List<Authority> Authorities;
+  private List<Role> roles;
+  private List<Authority> authorities;
 
   public List<Role> getRoles() {
-    return Roles;
+    return roles;
   }
 
   public void setRoles(List<Role> roles) {
-    Roles = roles;
+    this.roles = roles;
   }
 
   public List<Authority> getAuthorities() {
-    return Authorities;
+    return authorities;
   }
 
   public void setAuthorities(List<Authority> authorities) {
-    Authorities = authorities;
+    this.authorities = authorities;
   }
 
   public int getLoginState() {

@@ -1,13 +1,10 @@
 package com.rtworld.pojo;
-
-
-import java.io.Serializable;
-
-public class Authority implements Serializable {
-
+public class Authority {
   private int id;
   private String authorityname;
   private String description;
+  private int pid;
+  private String url;
 
   public int getId() {
     return id;
@@ -31,5 +28,21 @@ public class Authority implements Serializable {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public int getPid() {
+    return pid;
+  }
+
+  public void setPid(int pid) {
+    this.pid = pid;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
   }
 }

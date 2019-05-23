@@ -124,8 +124,7 @@ public class SysServiceImpl implements ISysService {
     public int sendMail(Mail mail) {
         int sendId = mail.getSendid();
         int receiverId = mail.getReceiverid();
-        String receiveMail = userDao.finduserById(receiverId).getMail();
-
+        String receiveMail = userDao.selectUserById(receiverId).getMail();
         return 0;
     }
 }

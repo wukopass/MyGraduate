@@ -58,8 +58,6 @@ public interface IUserDao {
     int checkMailValid(String mail);
     
     int adddUser(MemberUser memberUser);
-    
-    MemberUser finduserById(int userid);
     //用户管理的查找
     List<MemberUser> queryUserByVo();
 }

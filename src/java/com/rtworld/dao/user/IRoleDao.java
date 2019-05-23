@@ -7,6 +7,5 @@ public interface IRoleDao {
     List<Role> getAllRoles();
     Role getRole(Integer userId);
     void deleteOneById(Integer id);
-
     List<Role> findRolesByUserId(int userid);
 }
