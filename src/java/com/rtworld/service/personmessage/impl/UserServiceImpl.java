@@ -1,10 +1,13 @@
 package com.rtworld.service.personmessage.impl;
 
 
+import com.rtworld.dao.user.IAuthorityDao;
+import com.rtworld.dao.user.IRoleDao;
 import com.rtworld.dao.user.IUserDao;
 
-import com.rtworld.pojo.Mail;
+import com.rtworld.pojo.Authority;
 import com.rtworld.pojo.MemberUser;
+import com.rtworld.pojo.Role;
 import com.rtworld.service.personmessage.IUserService;
 import com.rtworld.util.Cons;
 import com.rtworld.util.StringUtils;
@@ -25,7 +28,10 @@ public class UserServiceImpl implements IUserService {
 
     @Autowired
     private IUserDao userDao;
-
+    @Autowired
+    private IRoleDao roleDao;
+    @Autowired
+    private IAuthorityDao authorityDao;
     @Override
     public MemberUser selectRtUserMessage(int id) {
        MemberUser  rt = null;
@@ -87,6 +93,31 @@ public class UserServiceImpl implements IUserService {
     @Override
     public MemberUser findUserById(int userid) {
         return userDao.finduserById(userid);
+    }
+
+    @Override
+    public List<MemberUser> queryUserByVo() {
+        return userDao.queryUserByVo();
+    }
+
+    @Override
+    public void deletUserByUserId(int userid) {
+        userDao.deleteOneById(userid);
+    }
+
+    @Override
+    public List<Role> selectAllUserRole() {
+        return roleDao.getAllRoles();
+    }
+
+    @Override
+    public MemberUser grantAuth(int userid) {
+        MemberUser user = userDao.finduserById(userid);
+        List<Role> roles = roleDao.findRolesByUserId(userid);
+        List<Authority> authorities = authorityDao.getPermissionsById(userid);
+        user.setRoles(roles);
+        user.setAuthorities(authorities);
+        return  user;
     }
 
     //加密算法返回加密后的密码和盐保存到数据库,5.17(done)

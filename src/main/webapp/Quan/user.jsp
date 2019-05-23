@@ -24,7 +24,7 @@
                 } else if (obj.event === 'del') {
                     layer.confirm('真的删除么?', function (index) {
                         //layer.msg("点击了删除");
-                        $.get("/user.do", {"userId": data.userId, "method": "delete"}, function () {
+                        $.post("/user/delete.do", {"userid": data.userid}, function () {
                             var where = $("#fm").serializeJSON();
                             table.reload('pageTable', {
                                 where: where,
@@ -36,8 +36,7 @@
                         });
                     });
                 } else if (obj.event === 'edit') {
-                    //top.active.openLay("修改用户","https://www.baidu.com","500px", "400px");
-                    top.openLay("修改用户","${ctx}/user.do?method=init&userId="+data.userId,"900px", "560px");
+                    top.openLay("修改用户","${ctx}/selectOne.do?userId="+data.userid,"900px", "560px");
                 }
             });
             table.on('toolbar(tableBind)', function (obj) {
@@ -56,7 +55,7 @@
                                     i++;
                                 });
                                 var ids = userId.join(",");
-                                $.get("/user.do", {"userId": ids, "method": "delete"}, function () {
+                                $.get("/delete.do", {"userid": ids, "method": "delete"}, function () {
                                     var where = $("#fm").serializeJSON();
                                     table.reload('pageTable', {
                                         where: where,
@@ -78,11 +77,11 @@
                 }
                 ;
             });
-
             // 查询角色
-            $.get("/user.do", {"method": "allRoles"}, function (r) {
-                $(r).each(function () {
-                    $("select[name=roleId]").append(new Option(this.roleName, this.roleId));
+            $.get("/user/selectUserRole.do", function (r) {
+                var roles = r.roles;
+                $(roles).each(function () {
+                    $("select[name=roleId]").append(new Option(this.rolename, this.roleid));
                 });
                 form.render("select","role_filter");
             }, "json");
@@ -99,7 +98,7 @@
         });
 
         function fmtData(res) {
-            return {'code': 0, 'msg': '', 'count': res.counts, 'data': res.beans};
+            return {'code': 0, 'msg': '', 'count': 100, 'data': res.data};
         }
 
         function setFace(face){
@@ -144,31 +143,17 @@
     <div class="layui-inline">
         <label class="layui-form-label">性别:</label>
     </div>
-    <div class="layui-form layui-inline">
-        <select name="gender" lay-search>
-            <option value="">--输入或选择性别--</option>
-            <option value="1">男</option>
-            <option value="0">女</option>
-        </select>
-    </div>
     <input type="button" id="search" value="查询" class="layui-btn layui-btn-sm">
 </form>
-<table class="layui-table" lay-data="{url:'/user.do', page:true, id:'pageTable',toolbar: '#myBar', parseData:fmtData, done: function(){autoFrame(${param.id})}}" lay-filter="tableBind">
+<table class="layui-table" lay-data="{url:'/user/select.do', page:true, id:'pageTable',toolbar: '#myBar', parseData:fmtData, done: function(){autoFrame(${param.id})}}" lay-filter="tableBind">
     <thead>
     <tr>
         <th lay-data="{type:'checkbox'}"></th>
         <th lay-data="{type:'numbers'}">序号</th>
-        <th lay-data="{field:'face',width:70,templet:function(res){return setFace(res.face);}}">头像</th>
         <th lay-data="{field:'username', width:80}">用户名</th>
-        <th lay-data="{field:'gender', width:80, sort: true,templet:function(res){return res.gender == 1 ? '男':'女'}}">
-            性别
-        </th>
-        <th lay-data="{field:'age', width:80}">年龄</th>
-        <th lay-data="{field:'stuclass', width:80}">班级</th>
-
-        <th lay-data="{field:'roleName', width: 200}">角色</th>
-        <th lay-data="{field:'timeStamp', sort: true, width: 180}">注册时间</th>
-
+        <%--<th lay-data="{field:'roleName', width: 200}">角色</th>--%>
+        <th lay-data="{field:'mail', width: 250}">邮箱</th>
+        <th lay-data="{field:'createtime', sort: true, width: 180}">注册时间</th>
         <th lay-data="{toolbar: '#btns', width: 170, fixed: 'right'}">操作</th>
     </tr>
     </thead>

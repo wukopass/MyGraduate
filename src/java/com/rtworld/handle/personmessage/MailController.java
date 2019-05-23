@@ -31,12 +31,7 @@ public class MailController {
 
     @Autowired
     private  IMailService mailService;
-
-
-
     /**
-     *
-     *
      * @param senderMailId
      * @param receiverMailId
      * @param content

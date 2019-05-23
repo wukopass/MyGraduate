@@ -24,7 +24,7 @@ public class SysServiceImpl implements ISysService {
     @Autowired
     private IRoleDao roleDao;
     @Autowired
-    private IAuthority authorityDao;
+    private IAuthorityDao authorityDao;
 
     @Autowired
     private IMailDao mailDao;
@@ -38,9 +38,8 @@ public class SysServiceImpl implements ISysService {
 
     @Override
     public List<Role> getRoles() {
-        return roleDao.getRoles();
+        return roleDao.getAllRoles();
     }
-
    @Transactional
     public void toBeUnValid( MemberUser rtUser) {
         userDao.setEffective(rtUser);

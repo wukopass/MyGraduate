@@ -25,7 +25,7 @@ public interface IUserDao {
 
     void setEffective(MemberUser  memberUser);
 
-    void deleteOneById(Integer id);
+    void deleteOneById(int id);
 
     MemberUser selectRtUserByTel(String tel);
 
@@ -60,6 +60,6 @@ public interface IUserDao {
     int adddUser(MemberUser memberUser);
     
     MemberUser finduserById(int userid);
-
-    int storeMail(Mail mail);
+    //用户管理的查找
+    List<MemberUser> queryUserByVo();
 }

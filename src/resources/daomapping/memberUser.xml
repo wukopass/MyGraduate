@@ -22,8 +22,12 @@
         values (userid,#{username},#{password},#{tel},#{mail},#{createtime},#{updatetime},#{iseffective},#{salt});
     </insert>
 
-
-
+    <select id="queryUserByVo"  resultType="MemberUser">
+        select * from memberuser where iseffective = 1
+    </select>
+    <update id="deleteOneById" parameterType="int">
+        update memberuser set iseffective = 0 where userid = #{userid}
+    </update>
 
 
 </mapper>

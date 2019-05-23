@@ -1,6 +1,7 @@
 package com.rtworld.handle.sys;
 
 
+import com.alibaba.fastjson.JSONObject;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.personmessage.IUserService;
 import com.rtworld.service.sys.ISysService;
@@ -20,8 +21,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
-
-
 @RequestMapping("/sys")
 @Controller
 public class SysController {
@@ -29,8 +28,6 @@ public class SysController {
     private ISysService sysService;
     @Autowired
     private IUserService userService;
-
-
     @RequestMapping("/login.do")
     public ModelAndView loginAndRegister(HttpServletRequest request,String username,String password) {
         ModelAndView model= new ModelAndView();
@@ -59,8 +56,15 @@ public class SysController {
         } else {// 登录成功,找出用户所有的信息
             MemberUser memberUser = userService.findUser(username);
             memberUser.setLoginState(1);
+            //用户被删除了没法登陆
+            if(memberUser.getIseffective() == 0){
+                error = "该用户无效，请联系管理员激活1379228478@qq.com";
+                model.addObject("error",error);
+                model.setViewName("login");
+                return  model;
+            }
+            //前台判断用户的登录状态
             session.setAttribute("memberUser",memberUser);
-            //model.setViewName("mainMenu");
             return new ModelAndView("redirect:/Quan/mainMenu.jsp");
         }
     }
@@ -109,7 +113,33 @@ public class SysController {
             System.out.println(salt2);
         }
 
+    /**
+     *用户进入后台的跳转
+     * @param userid
+     * @return
+     */
+    @RequestMapping("/redirect.do")
+    public  ModelAndView redirect(int userid){
+        ModelAndView myMv = new ModelAndView();
+        myMv.addObject("userid",userid);
+        myMv.setViewName("/backMenu");
+        return myMv;
     }
+    @RequestMapping("/backMenu.do")
+    @ResponseBody
+    public String getBackMenuByUserId(int userid){
+        MemberUser user = null;
+        user = userService.grantAuth(userid);
+        JSONObject obj = new JSONObject();
+        obj.put("backMenu",user);
+        if(user == null){
+            return  null;
+        }
+        return  obj.toJSONString();
+    }
+
+
+}
 
 
 

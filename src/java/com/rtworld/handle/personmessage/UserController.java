@@ -1,14 +1,20 @@
 package com.rtworld.handle.personmessage;
 
+import com.alibaba.fastjson.JSONObject;
 import com.rtworld.pojo.Base;
 import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
+import com.rtworld.pojo.Role;
 import com.rtworld.service.personmessage.IMailService;
 import com.rtworld.service.personmessage.IUserService;
 import com.rtworld.util.Cons;
+import com.rtworld.util.Page;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -18,7 +24,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/user")
-public class RtUserController {
+public class UserController {
 
     @Autowired
     private IUserService userService;
@@ -26,8 +32,17 @@ public class RtUserController {
     @Autowired
     private IMailService mailService;
     @RequestMapping("/select.do")
-    public ModelAndView pageUser(HttpServletRequest request){
-        return new ModelAndView();
+    @ResponseBody
+    public String pageUser(){
+        List<MemberUser> userList = userService.queryUserByVo();
+        JSONObject obj = new JSONObject();
+        obj.put("data",userList);
+        return  obj.toJSONString();
+    }
+    @RequestMapping("/delete.do")
+    public String deleteuser(@RequestParam int userid){
+        userService.deletUserByUserId(userid);
+        return  "success";
     }
     @RequestMapping("myMessage.do")
     public ModelAndView rtUserMessage(){
@@ -42,6 +57,14 @@ public class RtUserController {
         return mv;
     }
 
+    @RequestMapping("/selectUserRole.do")
+    @ResponseBody
+    public String selectAllRoles(){
+       List<Role> allRoles = userService.selectAllUserRole();
+       JSONObject obj = new JSONObject();
+       obj.put("roles",allRoles);
+       return (obj.toJSONString());
+    }
     /**
      * 找到所有的 我发送的邮件
      * @param

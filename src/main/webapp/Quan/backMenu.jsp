@@ -41,7 +41,6 @@
                     active.tabAdd(dataid.attr("data-url"), dataid.attr("data-id"), dataid.attr("data-title"));
                 } else {
                     //否则判断该tab项是否以及存在
-
                     var isData = false; //初始化一个标志，为false说明未打开该tab项 为true则说明已有
                     $.each($(".layui-tab-title li[lay-id]"), function () {
                         //如果点击左侧菜单栏所传入的id 在右侧tab项中的lay-id属性可以找到，则说明该tab项已经打开

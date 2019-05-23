@@ -76,7 +76,6 @@
             }
 
         })
-
     </script>
 
 
@@ -118,10 +117,9 @@
                  <form action ="/sys/logout.do" method="post">
                      <input type="submit" name="logout" value="注销" class="input-but ">
                  </form>
-                <form action ="${ctx}/backin.do">
-                    <input type="hidden" name="username" value="${sessionScope.user.username}">
-                    <input type="hidden" name="password" value="${sessionScope.user.password}">
-
+                <%--传入用户的id进入后台--%>
+                <form action ="/sys/redirect.do" method="post">
+                    <input type="hidden" name="userid" value=${sessionScope.memberUser.userid}>
                     <input type="submit" name="backMenu" value="进入后台" class="input-but ">
                 </form>
             </div>
