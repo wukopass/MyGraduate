@@ -1,9 +1,9 @@
-package com.rtworld.service.personmessage.impl;
+package com.rtworld.service.impl;
 
-import com.rtworld.dao.user.IMailDao;
-import com.rtworld.dao.user.IUserDao;
+import com.rtworld.dao.IMailDao;
+import com.rtworld.dao.IUserDao;
 import com.rtworld.pojo.Mail;
-import com.rtworld.service.personmessage.IMailService;
+import com.rtworld.service.IMailService;
 import com.rtworld.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

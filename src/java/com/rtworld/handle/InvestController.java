@@ -1,4 +1,4 @@
-package com.rtworld.handle.InvestController;
+package com.rtworld.handle;
 import com.rtworld.util.Cons;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;

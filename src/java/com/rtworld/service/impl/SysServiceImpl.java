@@ -1,11 +1,14 @@
-package com.rtworld.service.sys.impl;
+package com.rtworld.service.impl;
 
-import com.rtworld.dao.user.*;
+import com.rtworld.dao.IAuthorityDao;
+import com.rtworld.dao.IMailDao;
+import com.rtworld.dao.IRoleDao;
+import com.rtworld.dao.IUserDao;
 import com.rtworld.pojo.Authority;
 import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.pojo.Role;
-import com.rtworld.service.sys.ISysService;
+import com.rtworld.service.ISysService;
 import com.rtworld.util.Cons;
 import com.rtworld.util.Page;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -79,38 +79,9 @@
     <title>....管理系统</title>
  </head>
 <body>
-<div id="hearder2" class="clearfix">
-	<div class="logo">
-  <img src="/Quan/images/head_seecen.png">
-  </div>
-  <div class="logo-name">思诚e-leaning 教育平台</div>
-   
 </div>
-
-
-<div id="menu-box" class="clearfix">
-    <ul>
-        <li><a href="/Quan/mainMenu.jsp">首页</a></li>
-        <li><a href="/chat.do?method=friend&userId=${sessionScope.user.userId}&divId=myfriend">聊天交友</a></li>
-        <li><a href="/forum.do?method=index">社区</a></li>
-        <li><a href="/yuanj/stuManage/stuToTest.jsp">考试</a></li>
-        <li><a href="/yuanh/writeNotes.jsp">学习</a></li>
-        <li><a href="/Quan/aboutSeecen.jsp" target="_blank">关于思诚</a></li>
-    </ul>
-
-</div>
-<!-- detail -->
-
-
-<div id="detail2-box" class="clearfix">
-	<div class="tit-80"><a href="list-text2.html">学习笔记</a> - 查看详情</div>
-    <form class="layui-form" action="/writeNotes.do">
-        <input type="hidden" name="method" value="newNotes">
+    <form class="layui-form" action="mail/sendMail.do">
         <div class="model">
-            <div style="width: 1000px;height:175px">
-                <img src="/images/note.jpg">
-            </div>
-
             <br>
             <div class="layui-inline">
                 <label class="layui-form-label">标题:</label>
@@ -205,14 +176,6 @@
         </div>
     </form>
 
-
-
-
-
-
-
-
-</div>
 <!-- div5 -->
 <div id="div5" class="clearfix">
     <div class="link-box">

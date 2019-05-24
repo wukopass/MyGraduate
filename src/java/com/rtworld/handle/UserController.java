@@ -1,24 +1,20 @@
-package com.rtworld.handle.personmessage;
+package com.rtworld.handle;
 
 import com.alibaba.fastjson.JSONObject;
 import com.rtworld.pojo.Base;
 import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.pojo.Role;
-import com.rtworld.service.personmessage.IMailService;
-import com.rtworld.service.personmessage.IUserService;
+import com.rtworld.service.IMailService;
+import com.rtworld.service.IUserService;
 import com.rtworld.util.Cons;
-import com.rtworld.util.Page;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.sql.Time;
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.rtworld.dao.user;
+package com.rtworld.dao;
 
 
 

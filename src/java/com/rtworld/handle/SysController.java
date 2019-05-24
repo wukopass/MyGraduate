@@ -1,12 +1,12 @@
-package com.rtworld.handle.sys;
+package com.rtworld.handle;
 
 
 import com.alibaba.fastjson.JSONObject;
+import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
-import com.rtworld.service.personmessage.IUserService;
-import com.rtworld.service.sys.ISysService;
+import com.rtworld.service.IUserService;
+import com.rtworld.service.ISysService;
 import com.rtworld.util.Cons;
-import com.rtworld.util.Page;
 import com.rtworld.vo.RegisterVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
@@ -15,13 +15,14 @@ import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
+
 @RequestMapping("/sys")
 @Controller
 public class SysController {
@@ -113,19 +114,6 @@ public class SysController {
             System.out.println(encodedPassword);
             System.out.println(salt2);
         }
-
-    /**
-     *用户进入后台的跳转
-     * @param userid
-     * @return
-     */
-   /* @RequestMapping("/redirect.do")
-    public  ModelAndView redirect(int userid){
-        ModelAndView myMv = new ModelAndView();
-        myMv.addObject("userid",userid);
-        myMv.setViewName("/backMenu");
-        return myMv;
-    }*/
     @RequestMapping("/backMenu.do")
     @ResponseBody
     public ModelAndView getBackMenuByUserId(int userid){
@@ -139,7 +127,6 @@ public class SysController {
         }
         return mv;
     }
-
 
 }
 

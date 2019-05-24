@@ -97,7 +97,9 @@
             <li class="layui-nav-item">
                 <a href="javascript:;">
                     <!-- 头像 -->
+<%--
                     <img  onerror="this.src='${ctx}/images/default.ico'" src="${ctx}/user.do?method=initFace&face=${userBack.face}" class="layui-nav-img">
+--%>
                     ${sessionScope.userBack.username}
                 </a>
                 <dl class="layui-nav-child">
@@ -117,21 +119,21 @@
                 <c:forEach var="menu" items="${userBack.authorities}">
                     <li class="layui-nav-item layui-nav-itemed">
                         <c:if test="${menu.pid == 0}">
-                            <a href="javascript:;">${menu.mname}</a>
+                            <a href="javascript:;">${menu.authorityname}</a>
                             <dl class="layui-nav-child">
                                 <c:forEach var="childMenu" items="${userBack.authorities}">
-                                    <c:if test="${childMenu.pid == menu.mid}">
+                                    <c:if test="${childMenu.pid == menu.id}">
                                         <dd>
                                                 <%--<a data-type="tabAdd"
                                                    style="text-indent:20px;"
-                                                   href="${ctx}${childMenu.murl}"
-                                                   target="ifr" >${childMenu.mname}</a>--%>
+                                                   href="${ctx}${childMenu.url}"
+                                                   target="ifr" >${childMenu.authorityname}</a>--%>
                                             <a style="text-indent:20px;"
-                                               data-url="${ctx}${childMenu.murl}"
-                                               data-title="${childMenu.mname}"
-                                               data-id="${childMenu.mid}"
+                                               data-url="${ctx}${childMenu.url}"
+                                               data-title="${childMenu.authorityname}"
+                                               data-id="${childMenu.id}"
                                                class="menu-tab"
-                                               href="javascript:;">${childMenu.mname}</a>
+                                               href="javascript:;">${childMenu.authorityname}</a>
                                         </dd>
                                     </c:if>
                                 </c:forEach>

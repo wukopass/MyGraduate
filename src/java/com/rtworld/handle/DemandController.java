@@ -18,7 +18,6 @@ import java.util.UUID;
 
 @Controller
 public class DemandController {
-
     @RequestMapping(path="/imgLoad.do",method = {RequestMethod.POST})
     @ResponseBody
     public String imgLoad(@RequestParam("imgData") String bs){

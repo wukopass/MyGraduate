@@ -99,7 +99,7 @@
         <li><a href="/chat.do?method=friend&userId=${sessionScope.user.userId}&divId=myfriend">聊天交友</a></li>
         <li><a href="/forum.do?method=index">社区</a></li>
         <li><a href="/yuanj/stuManage/stuToTest.jsp">考试</a></li>
-        <li><a href="/yuanh/writeNotes.jsp">学习</a></li>
+        <li><a href="/Quan/writeNotes.jsp">学习</a></li>
         <li><a href="/Quan/aboutSeecen.jsp" target="_blank">关于思诚</a></li>
     </ul>
 

@@ -1,4 +1,4 @@
-package com.rtworld.service.personmessage;
+package com.rtworld.service;
 
 import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;

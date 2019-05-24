@@ -1,8 +1,7 @@
 package com.rtworld.handle;
 
-import com.rtworld.dao.user.IMailDao;
 import com.rtworld.pojo.Mail;
-import com.rtworld.service.sys.ISysService;
+import com.rtworld.service.ISysService;
 import com.rtworld.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

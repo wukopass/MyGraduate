@@ -1,14 +1,14 @@
-package com.rtworld.service.personmessage.impl;
+package com.rtworld.service.impl;
 
 
-import com.rtworld.dao.user.IAuthorityDao;
-import com.rtworld.dao.user.IRoleDao;
-import com.rtworld.dao.user.IUserDao;
+import com.rtworld.dao.IAuthorityDao;
+import com.rtworld.dao.IRoleDao;
+import com.rtworld.dao.IUserDao;
 
 import com.rtworld.pojo.Authority;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.pojo.Role;
-import com.rtworld.service.personmessage.IUserService;
+import com.rtworld.service.IUserService;
 import com.rtworld.util.Cons;
 import com.rtworld.util.StringUtils;
 import com.rtworld.vo.RegisterVO;

@@ -1,6 +1,6 @@
 package com.rtworld.realm;
 import com.rtworld.pojo.MemberUser;
-import com.rtworld.service.sys.ISysService;
+import com.rtworld.service.ISysService;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
