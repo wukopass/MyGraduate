@@ -6,17 +6,13 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 		<meta charset="utf-8" />
 		<title>登录页面</title>
-
 		<meta name="description" content="User login page" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
-
 		<!-- bootstrap & fontawesome -->
 		<link rel="stylesheet" href="${ctx}/assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" href="${ctx}/assets/font-awesome/4.2.0/css/font-awesome.min.css" />
-
 		<!-- text fonts -->
 		<link rel="stylesheet" href="${ctx}/assets/fonts/fonts.googleapis.com.css" />
-
 		<!-- ace styles -->
 		<link rel="stylesheet" href="${ctx}/assets/css/ace.min.css" />
 
@@ -24,7 +20,6 @@
 			<link rel="stylesheet" href="${ctx}/assets/css/ace-part2.min.css" />
 		<![endif]-->
 		<link rel="stylesheet" href="${ctx}/assets/css/ace-rtl.min.css" />
-
 		<!--[if lte IE 9]>
 		  <link rel="stylesheet" href="${ctx}/assets/css/ace-ie.min.css" />
 		<![endif]-->
@@ -52,13 +47,11 @@
 						<div class="login-container">
 							<div class="center">
 								<h1>
-									<span class="red"><img src="/Quan/images/head_seecen.png"></span>
+									<span class="red"><img src="/Quan/images/copy.ico"></span>
 								</h1>
-								<h4 class="blue" id="id-company-text">思诚科技有限公司<br></h4>
+								<h4 class="blue" id="id-company-text">智慧小甚会员管理系统<br></h4>
 							</div>
-
 							<div class="space-6"></div>
-
 							<div class="position-relative">
 								<div id="login-box" class="login-box visible widget-box no-border">
 									<div class="widget-body">
@@ -78,7 +71,6 @@
                                                     <label class="inline">
                                                         <input type="radio" name="radio" id="radio" value="radio" class="ace" ><span class="lbl"> 老师登录</span>
                                                     </label>--%>
-
 													<label class="block clearfix">
 														<span class="block input-icon input-icon-right">
 															<input type="text" name="username" class="form-control" placeholder="用户名" />

@@ -11,10 +11,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
 
-@RequestMapping("/mail")
+@RequestMapping(value= "/mail",produces = "text/plain;charset=UTF-8")
 @Controller
 public class MailController {
-
     @Autowired
     private  IMailService mailService;
     /**
@@ -28,13 +27,12 @@ public class MailController {
     public ModelAndView sendMail(int senderMailId,int receiverMailId,String title,String content){
         String success = mailService.sendMail(receiverMailId,content);
         int sqlSuccess = mailService.insertMail(senderMailId,receiverMailId,title,content);
-        return new ModelAndView("");
+        return new ModelAndView("writeNotes");
     }
     @RequestMapping("/selectMail.do")
     @ResponseBody
     public String mail( int id){
         List<Mail> mail = mailService.getMySendMails(id);
-       // String data = com.alibaba.fastjson.JSON.toJSONString(mail);
         JSONObject obj = new JSONObject();
         obj.put("data",mail);
         return obj.toJSONString();

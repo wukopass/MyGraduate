@@ -13,7 +13,6 @@ import java.util.Date;
 public class testMail {
     @Autowired
     private ISysService sysService;
-
     @RequestMapping("/hello.do")
     public int insertMail(Mail mail){
         mail.setSendid(13);

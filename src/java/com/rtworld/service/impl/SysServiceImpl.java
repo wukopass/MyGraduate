@@ -105,17 +105,9 @@ public class SysServiceImpl implements ISysService {
     }
 
     @Override
-    public Set<String> findPermissionsByUserId(Integer id) {
-        List<Authority> rtAuthority = authorityDao.getPermissionsById(id);
-        Set<String> authoritys = new HashSet<>();
-        for (Authority authority : rtAuthority) {
-            authoritys.add(authority.getAuthorityname());
-        }
-        return authoritys;
+    public List<Authority> findPermissionsByUserId(int id) {
+        return  authorityDao.getPermissionsById(id);
     }
-
-
-
     @Override
     public void setMsgById(MemberUser rtUser) {
         userDao.saveRtUser(rtUser);

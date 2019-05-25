@@ -96,14 +96,11 @@
                 });
             });
         });
-
         function fmtData(res) {
             return {'code': 0, 'msg': '', 'count': 100, 'data': res.data};
         }
-
         function setFace(face){
             return "<img onerror='this.src=\"${ctx}/images/default.ico\"' src='${ctx}/user.do?method=initFace&face="+face+"' class='layui-nav-img'>";
-
         }
     </script>
 </head>
@@ -115,12 +112,9 @@
     <div class="layui-inline">
         <input name="username" placeholder="请输入名称" autocomplete="off" class="layui-input">
     </div>
-
-
     <div class="layui-inline">
         <label class="layui-form-label">角色:</label>
     </div>
-
     <div class="layui-form layui-inline" lay-filter="role_filter">
         <select name="roleId" lay-search>
             <option value="">--输入或选择角色--</option>

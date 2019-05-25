@@ -71,36 +71,26 @@
                 }
             });
         });
+        function fmtData(res) {
+            return {'code': 0 ,'msg':'','count': 10,'data': res.data};
+        }
+
     </script>
     <meta charset="utf-8">
     <link rel="stylesheet" href="/Quan/css/style.css" type="text/css" media="all"/>
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     <title>....管理系统</title>
- </head>
+</head>
 <body>
 <div id="hearder2" class="clearfix">
-	<div class="logo">
-  <img src="/Quan/images/copy.ico">
-  </div>
-  <div class="logo-name"> 小甚 New Memmber 会员管理系统</div>
+    <div class="logo">
+        <img src="/Quan/images/head_seecen.png">
+    </div>
+    <div class="logo-name"></div>
 
 </div>
-
-
-<div id="menu-box" class="clearfix">
-    <ul>
-        <li><a href="/Quan/mainMenu.jsp">首页</a></li>
-        <li><a href="javascript:;">VI区</a></li>
-        <li><a href="javascript:;">VII区</a></li>
-        <li><a href="/Quan/vFive.jsp">VIII区</a></li>
-        <li><a href="/Quan/writeNotes.jsp">邮件</a></li>
-        <li><a href="/Quan/aboutSeecen.jsp" target="_blank">关于小甚</a></li>
-    </ul>
-
-</div>
-<!-- detail -->
 <div id="detail2-box" class="clearfix">
-	<div class="tit-80"><a href="list-text2.html">邮件</a> - 查看详情</div>
+    <div class="tit-80"><a href="list-text2.html">邮件</a> - 查看详情</div>
     <form class="layui-form" action="/mail/sendMail.do">
         <input type="hidden" name="method" value="newNotes">
         <div class="model">
@@ -113,12 +103,31 @@
                 <label class="layui-form-label">标题:</label>
             </div>
             <div class="layui-inline">
-                <input name="title" placeholder="请输入标题名称" autocomplete="off" class="layui-input">
+                <input name="notesName" placeholder="请输入标题名称" autocomplete="off" class="layui-input">
             </div>
             <br><br>
-            <input name="senderMailId" type="hidden" value="${sessionScope.memberUser.userid}" class="layui-input">
+            <div class="layui-inline">
+                <label class="layui-form-label">署名:</label>
+            </div>
+            <div class="layui-inline">
+                <input name="userName" placeholder="请输入作者姓名" autocomplete="off" class="layui-input">
+            </div>
+            <input name="senderMailId" type="hidden" value="13" class="layui-input">
             <input name="receiverMailId" type="hidden" value="13" class="layui-input">
+            <%-- <div class="layui-inline">
+                 <label class="layui-form-label">关键字:</label>
+             </div>
+             <div class="layui-inline">
+                 <input name="keyWord" placeholder="请输入查询关键字" autocomplete="off" class="layui-input">
+             </div>--%>
             <br><br>
+            <div class="layui-form-item">
+                <label class="layui-form-label">单选框</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="isPublic" value="1" title="公开">
+                    <input type="radio" name="isPublic" value="0" title="不公开" checked="checked">
+                </div>
+            </div>
             <div class="layui-inline">
                 <label class="layui-form-label">请编辑内容:</label>
             </div>
@@ -151,21 +160,13 @@
                         ,height: 312
                         ,url: '/mail/selectMail.do' //数据接口
                         ,where:{id:'${sessionScope.memberUser.userid}'}
-                        ,parseData:function(res) { //res 即为原始返回的数据
-                            return {
-                                "code": 0, //解析接口状态
-                                "msg": "", //解析提示文本
-                                "count": 10, //解析数据长度
-                                "data": res.data //解析数据列表
-                            };
-                        }
+                        ,parseData:'fmtData'
                         ,page: false //开启分页
                         ,cols:[[ //表头
-                             {field: 'id', title: 'ID', width:80,sort:false}
-                           /* ,{field: 'username', title: '用户名', width:80}*/
-                            ,{field:'createtime',title:'创建时间',width:130,sort:true}
+                            {field: 'id', title: 'ID', width:80, sort: true}
+                            /* ,{field: 'username', title: '用户名', width:80}*/
+                            ,{field:'createtime',title:'创建时间',width:80,sort:true}
                             ,{field:'title', title: '标题', width:80, sort: true}
-                            ,{field:'content', title: '内容', width:200, sort: true}
                             ,{fixed:'right',toolbar:'#btns'}
                         ]]
                     });
@@ -189,35 +190,6 @@
 
 </div>
 <!-- div5 -->
-<div id="div5" class="clearfix">
-    <div class="link-box">
-    	<span>友情链接：</span>
-        <select onChange="frlink(this)" name="select" class="select-link">
-            <option selected>--- 教育类网站 ---</option>
-            <option value="http://www.veryhuo.com">烈火网</option>
-            <option value="http://www.sina.com.cn">新浪网</option>
-            <option value="http://www.163.com">网易</option>
-        </select>
-        <select onChange="frlink(this)" name="select" class="select-link">
-            <option selected>--- 政府类网站 ---</option>
-            <option value="http://www.china.com">中华网</option>
-            <option value="http://www.sina.com.cn">新浪网</option>
-            <option value="http://www.163.com">网易</option>
-        </select>
-        <select onChange="frlink(this)" name="select" class="select-link">
-            <option selected>--- 校园类网站 ---</option>
-            <option value="http://www.veryhuo.com">烈火网</option>
-            <option value="http://www.sina.com.cn">新浪网</option>
-            <option value="http://www.163.com">网易</option>
-        </select>
-        <select onChange="frlink(this)" name="select" class="select-link">
-            <option selected>--- 其它类网站 ---</option>
-            <option value="http://www.veryhuo.com">烈火网</option>
-            <option value="http://www.sina.com.cn">新浪网</option>
-            <option value="http://www.163.com">网易</option>
-        </select>
-    </div>
-</div>
 <div id="div6"> Copyright &copy; 2019 WU1379028478@qq.com  All rights reserved.</div>
 
 

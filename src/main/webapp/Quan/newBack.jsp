@@ -23,10 +23,7 @@
     你也可以单独打开后台布局的例子：
     <a class="layui-btn layui-btn-normal" href="layuiAdmin.html" target="_blank">单独打开</a>
 </blockquote>
-
 <iframe src="layuiAdmin.html?from=demo" frameborder="0" id="demoAdmin" style="width: 100%; height: 300px;"></iframe>
-
-
 <script src="/res.layui.com/layui/dist/layui.js" charset="utf-8"></script>
 <!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 <script>

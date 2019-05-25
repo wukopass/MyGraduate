@@ -81,15 +81,15 @@
         <div class="layui-logo" style="color:#ffa847">思诚e_leaning后台管理系统</div>
         <!-- 头部区域（可配合layui已有的水平导航） -->
         <ul class="layui-nav layui-layout-left">
-            <li class="layui-nav-item"><a href="">控制台</a></li>
-            <li class="layui-nav-item"><a href="">商品管理</a></li>
-            <li class="layui-nav-item"><a href="">用户</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">控制台</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">商品管理</a></li>
+            <li class="layui-nav-item"><a href="javascript:;">用户</a></li>
             <li class="layui-nav-item">
                 <a href="javascript:;">其它系统</a>
                 <dl class="layui-nav-child">
-                    <dd><a href="">邮件管理</a></dd>
-                    <dd><a href="">消息管理</a></dd>
-                    <dd><a href="">授权管理</a></dd>
+                    <dd><a href="javascript:;">邮件管理</a></dd>
+                    <dd><a href="javascript:;">消息管理</a></dd>
+                    <dd><a href="javascript:;">授权管理</a></dd>
                 </dl>
             </li>
         </ul>
@@ -107,7 +107,7 @@
                     <dd><a href="">安全设置</a></dd>
                 </dl>
             </li>
-            <li class="layui-nav-item"><a href="${ctx}/Quan/mainMenu.jsp">返回首页</a></li>
+            <li class="layui-nav-item"><a href="${ctx}/mainMenu.jsp">返回首页</a></li>
         </ul>
     </div>
 
@@ -157,7 +157,7 @@
     </div>
 
     <div class="layui-footer">
-        江西思诚科技有限公司 赣ICP备17006097号 CopyRight©2014 - 2018
+         Copyright &copy; 2019 WU1379028478@qq.com  All rights reserved.
     </div>
 </div>
 </body>

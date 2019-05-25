@@ -19,7 +19,7 @@ import java.sql.Time;
 import java.util.List;
 
 @Controller
-@RequestMapping("/user")
+@RequestMapping(value = "/user",produces = "text/plain;charset=UTF-8")
 public class UserController {
 
     @Autowired
@@ -86,7 +86,6 @@ public class UserController {
         int i = userService.updatePasswordById(rtUser);
         return i;
     }
-
     /**
      * 邮件的详细信息
      * @param id
@@ -116,7 +115,6 @@ public class UserController {
         mv.addObject("NotReadMail",list);
         return mv;
     }
-
     /**
      * 查到所有的邮件信息
      * @param
@@ -156,17 +154,13 @@ public class UserController {
         ModelAndView mv = new ModelAndView("personMessage/SendEMail");
         mail.setSendid(Cons.USERID);
         mail.setIsread('0');
-        setBase(mail);
         mailService.insertMail(mail);
         System.out.println(123);
         return mv;
     }
-
-
     public void setBase(Base base){
         base.setCreateTime(new Time(System.currentTimeMillis()));
         base.setUpdateTime(new Time(System.currentTimeMillis()));
-
     }
 
 }

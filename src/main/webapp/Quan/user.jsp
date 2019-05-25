@@ -96,11 +96,9 @@
                 });
             });
         });
-
         function fmtData(res) {
             return {'code': 0, 'msg': '', 'count': 100, 'data': res.data};
         }
-
         function setFace(face){
             return "<img onerror='this.src=\"${ctx}/images/default.ico\"' src='${ctx}/user.do?method=initFace&face="+face+"' class='layui-nav-img'>";
 

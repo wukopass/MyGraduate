@@ -4,7 +4,7 @@ package com.rtworld.pojo;
 import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class Mail  extends Base implements Serializable {
+public class Mail  implements Serializable {
 
   private int id;
   private String title;

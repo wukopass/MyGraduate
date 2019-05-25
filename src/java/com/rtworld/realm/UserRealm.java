@@ -1,6 +1,8 @@
 package com.rtworld.realm;
+import com.rtworld.pojo.Authority;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.ISysService;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -9,6 +11,7 @@ import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
 import java.util.Set;
 
 public class UserRealm extends AuthorizingRealm {
@@ -27,15 +30,15 @@ public class UserRealm extends AuthorizingRealm {
 
 	// 授权，角色和权限
 	protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principals) {
-		Integer id = (Integer) principals.getPrimaryPrincipal();
-		Set<String> roles = sysService.findRolesByUserId(id);
-		Set<String> permissions = sysService.findPermissionsByUserId(id);
 		SimpleAuthorizationInfo zation = new SimpleAuthorizationInfo();
-		zation.setRoles(roles);
-		zation.setStringPermissions(permissions);
+		String username = (String)principals.getPrimaryPrincipal();
+		MemberUser user = sysService.queryUserByUserName(username);
+		List<Authority> permissions = sysService.findPermissionsByUserId(user.getUserid());
+		for (Authority permission : permissions) {
+			zation.addStringPermission(permission.getAuthorityname());
+		}
 		return zation;
 	}
-
 	// 登录校验
 	protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 		String username = (String) token.getPrincipal();

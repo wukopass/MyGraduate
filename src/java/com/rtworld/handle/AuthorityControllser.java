@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
-@RequestMapping("/authority")
+@RequestMapping(value = "/authority", produces = "text/plain;charset=UTF-8")
 @Controller
 public class AuthorityControllser {
     @Autowired

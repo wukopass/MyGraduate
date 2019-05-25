@@ -4,7 +4,7 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>思诚E-leaning教育平台</title>
+    <title>智慧小甚会员管理系统</title>
     <link rel="stylesheet" href="/Quan/css/style.css" type="text/css" media="all"/>
     <script src="/Quan/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript">
@@ -86,9 +86,9 @@
  <input type="hidden" id="loginstate" value="${sessionScope.memberUser.loginState}">
 <div id="hearder2" class="clearfix">
     <div class="logo">
-        <img src="images/head_seecen.png">
+        <img src="images/copy.ico">
     </div>
-   <div class="logo-name">思诚 e-leaning 教育平台</div>
+   <div class="logo-name"> 小甚 New Memmber 会员管理系统</div>
     <div class="form-tools">
 
     </div>
@@ -96,11 +96,11 @@
 <div id="menu-box" class="clearfix">
     <ul>
         <li><a href="/Quan/mainMenu.jsp">首页</a></li>
-        <li><a href="/chat.do?method=friend&userId=${sessionScope.user.userId}&divId=myfriend">聊天交友</a></li>
-        <li><a href="/forum.do?method=index">社区</a></li>
-        <li><a href="/yuanj/stuManage/stuToTest.jsp">考试</a></li>
-        <li><a href="/Quan/writeNotes.jsp">学习</a></li>
-        <li><a href="/Quan/aboutSeecen.jsp" target="_blank">关于思诚</a></li>
+        <li><a href="javascript:;">VI区</a></li>
+        <li><a href="javascript:;">VII区</a></li>
+        <li><a href="/Quan/vFive.jsp">VIII区</a></li>
+        <li><a href="/Quan/writeNotes.jsp">邮件</a></li>
+        <li><a href="/Quan/aboutSeecen.jsp" target="_blank">关于小甚</a></li>
     </ul>
 
 </div>
@@ -108,11 +108,9 @@
 <!-- div1 -->
 <div id="div1" class="clearfix">
     <div id="loginshow" class="left260" style="display: none">
-        <div class="title-box">学生登录</div>
-
-
+        <div class="title-box">会员登录</div>
             <div class="t-link">
-                <span style="font-size: 15px"> 欢迎</span>
+                <span style="font-size: 15px"> 欢迎 </span>
                 <span style="color:green;font-size: 18px">${sessionScope.memberUser.username}</span>
                  <form action ="/sys/logout.do" method="post">
                      <input type="submit" name="logout" value="注销" class="input-but ">
@@ -125,53 +123,54 @@
             </div>
     </div>
     <div id="notloginshow" class="left260">
-        <div class="title-box">学生登录</div>
+        <div class="title-box">会员登录</div>
          <div>您还未登录，请先登录</div>
         <input type="button" name="button2" value="登录" class="input-login" onClick="window.open('/Quan/login.jsp')">
         <input type="button" name="button" value="注册" class="input-but"  onClick="window.open('/Quan/register.jsp')">
     </div>
     <div class="center450">
         <div class="title-box">中心简介</div>
-        <p><img src="images/p-img.jpg" align="left">江西思诚科技有限公司（以下简称“思诚科技”）(seecen)是一家面向企业、高等院校、大学生，提供信息技术咨询与人才服务的专业机构。公司业务范围涵盖软件产品研发、企业信息系统项目咨询、
-            高校服务、软件人才定制岗前实训等方面。公司总部坐落于国家首批软件开发服务外包示范城市、中部地区软件产业基地和软件人才培养基地——南昌。<a href="/Quan/aboutSeecen.jsp" target="_blank">查看更多...</a></p>
+        <p><img src="images/p-img.jpg" align="left">随着信息化时代的发展，各种web网络服务得到了广泛的应用，当然基于B/S的管理系统也随之孕育而生。会员管理系统作为一个管理系统，针对的是会员用户，是一套为了提高管理效率，方便管理者分类管理站内会员，更好的为企业创造效益的管理系统。
+            此系统采用了java语言开发，前台采用JSP展示，数据库采用广泛使用的MySql。
+           <a href="/Quan/aboutSeecen.jsp" target="_blank">查看更多...</a></p>
     </div>
     <div class="right260">
         <ul>
             <li>
-                <a target="_blank" href="detail2.html" title=""><img src="images/icon-1.png"></a><br />
-                <a target="_blank" href="detail2.html" style="color:#d81e06;">官网首页</a>
+                <a target="_blank" href="" title=""><img src="images/icon-1.png"></a><br />
+                <a target="_blank" href="" style="color:#d81e06;">官网首页</a>
             </li>
             <li>
-                <a target="_blank" href="form2.html" title=""><img src="images/icon-2.png"></a><br />
-                <a target="_blank" href="form2.html" style="color:#eda761;">NEW学堂</a>
+                <a target="_blank" href="javascript:;" title=""><img src="images/icon-2.png"></a><br />
+                <a target="_blank" href="javascript:;" style="color:#eda761;">NEW学堂</a>
             </li>
             <li>
-                <a target="_blank" href="form2.html" title=""><img src="images/icon-3.png"></a><br />
-                <a target="_blank" href="form2.html" style="color:#469892;">信息咨询</a>
+                <a target="_blank" href="javascript:;" title=""><img src="images/icon-3.png"></a><br />
+                <a target="_blank" href="javascript:;" style="color:#469892;">信息咨询</a>
             </li>
             <li>
-                <a target="_blank" href="form2.html" title=""><img src="images/icon-4.png"></a><br />
-                <a target="_blank" href="form2.html" style="color:#4094ac;">新闻中心</a>
+                <a target="_blank" href="javascript:;" title=""><img src="images/icon-4.png"></a><br />
+                <a target="_blank" href="javascript:;" style="color:#4094ac;">新闻中心</a>
             </li>
             <li>
-                <a target="_blank" href="form2.html" title=""><img src="images/icon-5.png"></a><br />
-                <a target="_blank" href="form2.html" style="color:#1c6dbf;">高校服务</a>
+                <a target="_blank" href="javascript:;" title=""><img src="images/icon-5.png"></a><br />
+                <a target="_blank" href="javascript:;" style="color:#1c6dbf;">培训服务</a>
             </li>
             <li>
                 <a  target="_blank" href="http://192.168.1.245:8080/shiro/login_test;JSESSIONID=bb270378-2da4-4613-9315-8ecbbf261844" title="考试系统"><img src="images/icon-6.png"></a><br />
                 <a  target="_blank" href="http://192.168.1.245:8080/shiro/login_test;JSESSIONID=bb270378-2da4-4613-9315-8ecbbf261844" style="color:#86309f;">考试系统</a>
             </li>
             <li>
-                <a  target="_blank" href="form2.html" title=""><img src="images/icon-7.png"></a><br />
-                <a  target="_blank" href="form2.html" style="color:#d4237a;">合作伙伴</a>
+                <a  target="_blank" href="javascript:;" title=""><img src="images/icon-7.png"></a><br />
+                <a  target="_blank" href="javascript:;" style="color:#d4237a;">合作伙伴</a>
             </li>
             <li>
-                <a target="_blank" href="form2.html" title=""><img src="images/icon-8.png"></a><br />
-                <a target="_blank" href="form2.html" style="color:#1a7355;">产品平台</a>
+                <a target="_blank" href="javascript:;" title=""><img src="images/icon-8.png"></a><br />
+                <a target="_blank" href="javascript:;" style="color:#1a7355;">产品平台</a>
             </li>
             <li>
-                <a target="_blank" href="form2.html" title=""><img src="images/icon-9.png"></a><br />
-                <a target="_blank" href="form2.html" style="color:#d4237a;">创业创新</a>
+                <a target="_blank" href="javascript:;" title=""><img src="images/icon-9.png"></a><br />
+                <a target="_blank" href="javascript:;" style="color:#d4237a;">创业创新</a>
             </li>
         </ul>
     </div>
@@ -179,7 +178,7 @@
 <!-- div2 -->
 <div id="div2" class="clearfix">
     <div class="left260">
-        <div class="title-box">学员故事<a  target="_blank" href="http://www.scnew.com.cn/news/Special/xygs/Index.html" class="title-more">更多...</a></div>
+        <div class="title-box">会员故事<a  target="_blank" href="http://www.scnew.com.cn/news/Special/xygs/Index.html" class="title-more">更多...</a></div>
         <ul>
             <li><a  target="_blank " href="http://www.scnew.com.cn/news/news_20180613101053.html ">0基础学java，如今工资竟然达到了5位数</a></li>
             <li><a  target="_blank " href="http://www.scnew.com.cn/news/news_20180511105941.html">你还在纠结代码,我在旁边抖腿</a></li>
@@ -232,7 +231,7 @@
         </div>
     </div>
     <div class="right260">
-        <div class="title-box">视频新闻<a href="list-pic2.html" class="title-more">更多...</a></div>
+        <div class="title-box">视频娱乐<a href="list-pic2.html" class="title-more">更多...</a></div>
         <div class="video-box">
             <embed src='http://player.youku.com/player.php/sid/XMjUyNDc5MDYwMA==/v.swf' allowFullScreen='true' quality='high' width='260' height='150' align='middle' allowScriptAccess='always' type='application/x-shockwave-flash'></embed>
         </div>
@@ -276,30 +275,29 @@
     });
 </script>
 <!-- div3 -->
-<div id="div3"><img src="images/seecen.jpg"></div>
+<div id="div3"><img src="images/middle.png"></div>
 <div id="div4">
-    <div class="title-box">设备资源</div>
+    <div class="title-box">资源和平台</div>
 </div>
 <div class="scrollleft clearfix">
     <ul>
         <li>
-            <a href="http://www.seecen.com/crm1.html" target="_blank"><img src="images/a1.png"/></a>
+            <a href="" target="_blank"><img src="images/a1.png"/></a>
             <span>产品和平台</span>
         </li>
         <li>
-            <a href="http://www.seecen.com/qyzx.html" target="_blank"><img src="images/a2.png"/></a>
+            <a href="" target="_blank"><img src="images/a2.png"/></a>
             <span>企业信息咨询</span>
         </li>
         <li>
-            <a href="http://www.seecen.com/oracle1.html" target="_blank"><img  src="images/a3.png"/></a>
-            <span>关于oracle</span>
+            <a href="" target="_blank"><img  src="images/timg.jpg"/></a>
+            <span>关于小甚</span>
         </li>
 
     </ul>
 </div>
 <script type="text/javascript">
     $(document).ready(function(){
-
         $(".scrollleft").imgscroll({
             speed: 80,    //图片滚动速度
             amount: 0,    //图片滚动过渡时间
@@ -322,14 +320,14 @@
         <select onChange="frlink(this)" name="select" class="select-link">
             <option selected>--- 政府类网站 ---</option>
             <option value="http://www.china.com"></option>
-            <option value="http://www.sina.com.cn">新浪网</option>
-            <option value="http://www.163.com">网易</option>
+            <option value="http://www.sina.com.cn">江西省政府网</option>
+            <option value="http://www.163.com">江西省公安网</option>
         </select>
         <select onChange="frlink(this)" name="select" class="select-link">
-            <option selected>--- 校园类网站 ---</option>
-            <option value="http://www.ncu.edu.cn/">南昌大学官网</option>
-            <option value="http://www.nit.edu.cn/">南昌工程学院官网</option>
-            <option value="http://www.ecit.edu.cn/">东华理工大学官网</option>
+            <option selected>--- 企业类网站 ---</option>
+            <option value="http://www.ncu.edu.cn/">阿里巴巴官网</option>
+            <option value="http://www.nit.edu.cn/">腾讯官网</option>
+            <option value="http://www.ecit.edu.cn/">百度科技官网</option>
         </select>
         <select onChange="frlink(this)" name="select" class="select-link">
             <option selected>--- 其它类网站 ---</option>
@@ -339,7 +337,7 @@
         </select>
     </div>
 </div>
-<div id="div6">Copyright &copy; 2018 南昌思诚科技有限公司 All rights reserved.</div>
+<div id="div6"> Copyright &copy; 2019 WU1379028478@qq.com  All rights reserved. </div>
 </body>
 </html>
 

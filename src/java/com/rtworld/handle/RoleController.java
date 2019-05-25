@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import java.util.List;
 
-@RequestMapping("/role")
+@RequestMapping(value ="/role", produces = "text/plain;charset=UTF-8")
 @Controller
 public class RoleController {
     @Autowired

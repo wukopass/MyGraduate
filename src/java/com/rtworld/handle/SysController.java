@@ -10,6 +10,7 @@ import com.rtworld.util.Cons;
 import com.rtworld.vo.RegisterVO;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
+import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.apache.shiro.crypto.SecureRandomNumberGenerator;
 import org.apache.shiro.crypto.hash.SimpleHash;
 import org.apache.shiro.subject.Subject;
@@ -116,6 +117,7 @@ public class SysController {
         }
     @RequestMapping("/backMenu.do")
     @ResponseBody
+    @RequiresPermissions("系统管理")
     public ModelAndView getBackMenuByUserId(int userid){
         ModelAndView mv = new ModelAndView();
         MemberUser user = null;
