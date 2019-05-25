@@ -104,9 +104,6 @@
     <form class="layui-form" action="/mail/sendMail.do">
         <input type="hidden" name="method" value="newNotes">
         <div class="model">
-            <div style="width: 1000px;height:175px">
-                <img src="/images/note.jpg">
-            </div>
 
             <br>
             <div class="layui-inline">

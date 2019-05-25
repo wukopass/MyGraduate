@@ -133,10 +133,6 @@
     <div class="layui-inline">
         <input readonly id="endTimeStr" name="endTimeStr" placeholder="请选择结束时间" autocomplete="off" class="layui-input">
     </div>
-
-    <div class="layui-inline">
-        <label class="layui-form-label">性别:</label>
-    </div>
     <input type="button" id="search" value="查询" class="layui-btn layui-btn-sm">
 </form>
 <table class="layui-table" lay-data="{url:'/authority/select.do', page:true, id:'pageTable',toolbar: '#myBar', parseData:fmtData, done: function(){autoFrame(${param.id})}}" lay-filter="tableBind">

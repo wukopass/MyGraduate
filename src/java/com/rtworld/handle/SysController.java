@@ -117,7 +117,6 @@ public class SysController {
         }
     @RequestMapping("/backMenu.do")
     @ResponseBody
-    @RequiresPermissions("系统管理")
     public ModelAndView getBackMenuByUserId(int userid){
         ModelAndView mv = new ModelAndView();
         MemberUser user = null;

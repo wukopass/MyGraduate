@@ -6,7 +6,7 @@
         select ta.*  from authority ta
         left join roleauthority tr on ta.id=tr.authorityid
         left join userrole tu
-        on tr.roleid=tu.roleid where tu.userid=#{id}
+        on tr.roleid=tu.roleid where tu.userid=#{id} group  by ta.id
     </select>
     <select id = "getAllAuthirities" resultType="Authority">
         select * from authority

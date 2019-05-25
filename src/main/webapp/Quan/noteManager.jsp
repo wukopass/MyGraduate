@@ -71,9 +71,7 @@
                 }
             });
         });
-        function fmtData(res) {
-            return {'code': 0 ,'msg':'','count': 10,'data': res.data};
-        }
+
 
     </script>
     <meta charset="utf-8">
@@ -82,57 +80,10 @@
     <title>....管理系统</title>
 </head>
 <body>
-<div id="hearder2" class="clearfix">
-    <div class="logo">
-        <img src="/Quan/images/head_seecen.png">
-    </div>
-    <div class="logo-name"></div>
-
-</div>
-<div id="detail2-box" class="clearfix">
-    <div class="tit-80"><a href="list-text2.html">邮件</a> - 查看详情</div>
     <form class="layui-form" action="/mail/sendMail.do">
         <input type="hidden" name="method" value="newNotes">
         <div class="model">
-            <div style="width: 1000px;height:175px">
-                <img src="/images/note.jpg">
-            </div>
-
             <br>
-            <div class="layui-inline">
-                <label class="layui-form-label">标题:</label>
-            </div>
-            <div class="layui-inline">
-                <input name="notesName" placeholder="请输入标题名称" autocomplete="off" class="layui-input">
-            </div>
-            <br><br>
-            <div class="layui-inline">
-                <label class="layui-form-label">署名:</label>
-            </div>
-            <div class="layui-inline">
-                <input name="userName" placeholder="请输入作者姓名" autocomplete="off" class="layui-input">
-            </div>
-            <input name="senderMailId" type="hidden" value="13" class="layui-input">
-            <input name="receiverMailId" type="hidden" value="13" class="layui-input">
-            <%-- <div class="layui-inline">
-                 <label class="layui-form-label">关键字:</label>
-             </div>
-             <div class="layui-inline">
-                 <input name="keyWord" placeholder="请输入查询关键字" autocomplete="off" class="layui-input">
-             </div>--%>
-            <br><br>
-            <div class="layui-form-item">
-                <label class="layui-form-label">单选框</label>
-                <div class="layui-input-block">
-                    <input type="radio" name="isPublic" value="1" title="公开">
-                    <input type="radio" name="isPublic" value="0" title="不公开" checked="checked">
-                </div>
-            </div>
-            <div class="layui-inline">
-                <label class="layui-form-label">请编辑内容:</label>
-            </div>
-            <div id="editor"></div>
-            <input type="hidden" id="notesContent" name="content">
             <script>
                 var E = window.wangEditor;
                 var editor = new E('#editor');
@@ -143,12 +94,6 @@
                 $("#notesContent").val(editor.txt.html())
             </script>
             <br>
-            <div class="layui-form-item" style="float:right">
-                <div class="layui-input-block">
-                    <button class="layui-btn" id="submit" lay-filter="demo1" lay-submit="formDemo">保存</button>
-                    <button class="layui-btn layui-btn-primary" type="reset">重置</button>
-                </div>
-            </div>
             <br><br>
             <table id="demo" lay-filter="test"></table>
             <script>
@@ -160,13 +105,16 @@
                         ,height: 312
                         ,url: '/mail/selectMail.do' //数据接口
                         ,where:{id:'${sessionScope.memberUser.userid}'}
-                        ,parseData:'fmtData'
+                        ,parseData: function(res) {
+                            return {'code': 0 ,'msg':'','count': 10,'data': res.data};
+                        }
                         ,page: false //开启分页
                         ,cols:[[ //表头
-                            {field: 'id', title: 'ID', width:80, sort: true}
+                            {field: 'id', title: 'ID', width:80,sort:false}
                             /* ,{field: 'username', title: '用户名', width:80}*/
-                            ,{field:'createtime',title:'创建时间',width:80,sort:true}
+                            ,{field:'createtime',title:'创建时间',width:130,sort:true}
                             ,{field:'title', title: '标题', width:80, sort: true}
+                            ,{field:'content', title: '内容', width:200, sort: true}
                             ,{fixed:'right',toolbar:'#btns'}
                         ]]
                     });
@@ -175,20 +123,8 @@
             <script type="text/html" id="btns">
                 <a id="look" class="layui-btn layui-btn-primary layui-btn-xs" lay-event="detail">查看</a>
             </script>
-            <div style="height:175px;width:1000px">
-                <img src="/images/foot.jpg">
-            </div>
         </div>
     </form>
-
-
-
-
-
-
-
-
-</div>
 <!-- div5 -->
 <div id="div6"> Copyright &copy; 2019 WU1379028478@qq.com  All rights reserved.</div>
 
