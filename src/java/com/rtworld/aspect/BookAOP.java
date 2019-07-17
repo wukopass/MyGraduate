@@ -14,7 +14,7 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
 import org.apache.log4j.Logger;
-
+//: object/Documentation
 /**
  * AOP 切面编程，结合日志框架
  * @author Administrator
@@ -30,15 +30,15 @@ public class BookAOP {
 	@Pointcut("execution(* com.rtworld.handle..*.*(..))")
 	public void method(){
 	}
-	
+
 	@After("method()")
 	public void after(JoinPoint joinPoint){
 		System.err.println("this is after.................");
 	}
-	
-	/*@AfterReturning("method()")*/
-	/*public void afterReturning(JoinPoint joinPoint) {
-		// 1:在切面方法里面获取一个request，
+
+	@AfterReturning("method()")
+	public void afterReturning(JoinPoint joinPoint) {
+		// 1:在切面方法里面获取一个request，用来获取ip
 		HttpServletRequest request = ((ServletRequestAttributes) RequestContextHolder.getRequestAttributes()).getRequest();
 		// 2:通过springAOP切面JoinPoint类对象，获取该类，或者该方法，或者该方法的参数
 		Class<? extends Object> clazz = joinPoint.getTarget().getClass();
@@ -62,14 +62,14 @@ public class BookAOP {
 			}
 			MemberUser username = (MemberUser) request.getSession().getAttribute("memberUser");
 			if (username != null) {
-				logger.debug(username + " 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
+				System.err.println(username + " 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
 						+ request.getRemoteHost());
 			} else {
-				logger.debug("未知用户 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
+				System.err.println("未知用户 执行了 " + controllerOperation + " 下的  " + methodOperation + " 操作！ ip地址为"
 						+ request.getRemoteHost());
 			}
 
 		}
 
-	}*/
-}
+	}
+}///:~

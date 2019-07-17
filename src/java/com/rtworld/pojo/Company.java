@@ -9,7 +9,7 @@ public class Company  implements Serializable {
   private String isn;
   private String kind;
   private String introduce;
-
+  private Integer baby;
 
   public long getCompanyid() {
     return companyid;

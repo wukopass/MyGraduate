@@ -6,6 +6,7 @@ import com.rtworld.pojo.Mail;
 import com.rtworld.pojo.MemberUser;
 import com.rtworld.service.IUserService;
 import com.rtworld.service.ISysService;
+import com.rtworld.sleep.iaspect.Human;
 import com.rtworld.util.Cons;
 import com.rtworld.vo.RegisterVO;
 import org.apache.shiro.SecurityUtils;
@@ -36,6 +37,8 @@ public class SysController {
         ModelAndView model= new ModelAndView();
         HttpSession session = request.getSession();
         Subject subject = SecurityUtils.getSubject();
+        Human human = new Human();
+        human.sleep();
         UsernamePasswordToken token = new UsernamePasswordToken(username, password);
         String error = null;
         try {

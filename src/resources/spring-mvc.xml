@@ -10,7 +10,7 @@
     <mvc:annotation-driven conversion-service="converters"/>
 
     <!-- 开启扫描 -->
-    <context:component-scan use-default-filters="false" base-package="com.rtworld.handle">
+    <context:component-scan use-default-filters="false" base-package="com.rtworld.*">
         <!-- 只扫描base-package指定下的有@Controller下的java类 -->
         <context:include-filter type="annotation"
                                 expression="org.springframework.stereotype.Controller" />

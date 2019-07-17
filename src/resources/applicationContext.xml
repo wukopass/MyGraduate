@@ -74,4 +74,12 @@
         <!-- 引用方法切面和类包的切面，引用切面 -->
         <aop:advisor advice-ref="druidStatInterceptor" pointcut-ref="druidStatPointcut" />
     </aop:config>
+
+    <bean id="sleepHelper" class="com.rtworld.sleep.iaspect.SleepHelper"></bean>
+    <aop:config>
+        <aop:pointcut expression="execution(* com.rtworld.sleep..*.*(..))" id="sleepPointcut"/>
+        <aop:advisor advice-ref="sleepHelper" pointcut-ref="sleepPointcut"/>
+    </aop:config>
+
+    <bean id="human" class="com.rtworld.sleep.iaspect.Human"/>
 </beans>

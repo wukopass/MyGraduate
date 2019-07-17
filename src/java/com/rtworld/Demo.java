@@ -8,7 +8,7 @@ import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 import java.util.Properties;
 
-public class Demo {
+public class Demo extends  Thread{
      //测试redis的连接
     public static void main(String[]args) throws Exception {
         Properties prop = new Properties();
@@ -26,6 +26,8 @@ public class Demo {
         } catch (MessagingException e) {
             e.printStackTrace();
         }
+        Demo myThread1 = new Demo();
+        myThread1.start();
         Message message = createSimpleMail(session);
         ts.sendMessage(message,message.getAllRecipients());
         ts.close();
@@ -46,5 +48,9 @@ public class Demo {
          //返回创建好的邮件对象
            return message;
            }
+     public void run(){
 
+
+
+     }
 }
