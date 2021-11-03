@@ -34,7 +34,7 @@
     <curator.version>2.5.0</curator.version>
     <tomcat_embed_version>8.0.11</tomcat_embed_version>
     <javassist.version>3.15.0-GA</javassist.version>
-    <mina.version>1.1.7</mina.version>
+    <mina.version>2.1.5</mina.version>
     <grizzly.version>2.1.4</grizzly.version>
     <xstream.version>1.4.1</xstream.version>
     <bsf.version>3.1</bsf.version>
