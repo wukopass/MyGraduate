@@ -23,7 +23,7 @@
     <shiro.version>1.4.0</shiro.version>
 
     <ws.version>2.0</ws.version>
-    <resteasy.version>3.0.7.Final</resteasy.version>
+    <resteasy.version>3.14.0.Final</resteasy.version>
     <kryo.version>2.24.0</kryo.version>
     <kryo-serializers.version>0.26</kryo-serializers.version>
     <fst.version>1.55</fst.version>
